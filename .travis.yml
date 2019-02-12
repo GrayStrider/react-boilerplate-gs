@@ -1,25 +1,24 @@
 language: node_js
-
 node_js:
-  - 'node'
-  - 'lts/*'
-
+- node
+- lts/*
 script:
-  - node ./internals/scripts/generate-templates-for-linting
-  - npm test -- --maxWorkers=4
-  - npm run build
-
+- node ./internals/scripts/generate-templates-for-linting
+- npm test -- --maxWorkers=4
+- npm run build
 before_install:
-  - export CHROME_BIN=chromium-browser
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-
+- export CHROME_BIN=chromium-browser
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
 notifications:
   email:
     on_failure: change
-
-after_success: 'npm run coveralls'
-
+after_success: npm run coveralls
 cache:
   directories:
-    - node_modules
+  - node_modules
+deploy:
+  provider: heroku
+  api_key:
+    secure: Vt00Dri/BwZnfLN4+nuCS5rIL8A0b+0kJ9JngpnOelPJkRnGRBFKLsmw1/VWUWIOnSyE6QEUa3QhAJBmsJbcm4/F45FmowyZx2Gj0ztgUop8wkJ6aj4UWXBYXF5mUxPE1YymE1XzyexOWCkcibTiFuYaAqHRBOny77mNCasKr1rtbsbP5lXTI775mBtEWI1BTW+6GAgfL2K3yzQFETbYgdb8W7bNCvvKnmZouV2qL0gF19hxwG/45fubYXu1N3I0TkyPSuon/2x1AMo/esflMvFWZBGK+0f6in2nWlF0wR78hvePloQKsgJUrvYOp3GyqUX4eqSpdZGf1mEKyLi16auN4OKms7EhZStccRLAyzhmYLLJEfL1xEJYct1QJCPk4JCQk1PK/jHeH8nR/o5cfYe1n3jz/VTE3jzJMCMS7FynyF3deG12YjahaSUlsn7pioZTP4xfdr1pe/c8VUF/peA6uaGE/YkntZMkmybglzPbb4zsn+9igfdv03OeHrcWxLTyh0JaU5stT8JCnOH5X8Yt2EOInDJqr3X0gBrExeP8FgS09d4faoTh7CkCTVdx6Bb19LtFa8Rtuf5GBXL1PEpwdwk4EVHo1tbpLsqQO+YtvivHbW1jOG879fQwDBRWAvRIQ87uDUTX3BxJ3oul0Ua/7Z/fQUVC8TypnGB5HHs=
+    app: react-boilerplate-gs
