@@ -14,7 +14,7 @@ const MenuStyled = styled(Menu)`
   & .menu {
     margin-left: 0.6em !important;
   }
-`
+`;
 
 class Header extends React.Component {
   render() {
@@ -22,11 +22,11 @@ class Header extends React.Component {
       <MenuStyled vertical>
         <Dropdown pointing='left' item text='Pages'>
           <Dropdown.Menu>
-            <Dropdown.Item link><a href='https:\\google.com' target='_blank'>Google</a></Dropdown.Item>
-            <Dropdown.Item link><Link to='/features'>Features</Link></Dropdown.Item>
-            <Dropdown.Item link><Link to='/playground'>Playground</Link></Dropdown.Item>
+            <Dropdown.Item link as='a' href='https:\\google.com' target='_blank'>Google</Dropdown.Item>
+            <Dropdown.Item link as={Link} to='/features'>Features</Dropdown.Item>
+            <Dropdown.Item link as={Link} to='/playground'>Playground</Dropdown.Item>
             <Divider/>
-            <Dropdown.Item link><Link to='/'>Home</Link></Dropdown.Item>
+            <Dropdown.Item link as={Link} to='/'>Home</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
         <Menu.Item link>
