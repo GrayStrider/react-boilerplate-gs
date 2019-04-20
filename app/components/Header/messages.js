@@ -16,4 +16,8 @@ export default defineMessages({
     id: `${scope}.features`,
     defaultMessage: 'Features',
   },
+  playground: {
+    id: `${scope}.playground`,
+    defaultMessage: 'Playground',
+  },
 });

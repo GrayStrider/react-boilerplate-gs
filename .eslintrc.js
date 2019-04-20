@@ -23,7 +23,7 @@ module.exports = {
     },
   },
   rules: {
-    'prettier/prettier': ['error', prettierOptions],
+    'prettier/prettier': 0,
     'compat/compat': 'error',
     'arrow-body-style': [2, 'as-needed'],
     'class-methods-use-this': 0,
@@ -61,7 +61,7 @@ module.exports = {
     'newline-per-chained-call': 0,
     'no-confusing-arrow': 0,
     'no-console': 1,
-    'no-unused-vars': 2,
+    'no-unused-vars': 0,
     'no-use-before-define': 0,
     'prefer-template': 2,
     'react/destructuring-assignment': 0,
