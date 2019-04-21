@@ -28,8 +28,7 @@ function Playground(props) {
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
-          <Grid.Column>
-            <Segment>1</Segment>
+          <Grid.Column floated='right'>
             <Segment>2</Segment>
           </Grid.Column>
         </Grid.Row>
