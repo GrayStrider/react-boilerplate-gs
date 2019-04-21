@@ -19,7 +19,7 @@ const Wrapper = styled.div`
       justify-content: flex-end;
       
       * {
-        margin-bottom: 0;
+        margin-bottom: 0; // since flex does not have collapsible margins
         
         &:first-child {
           flex: 1;
@@ -50,6 +50,7 @@ function Playground(props) {
             <Segment>4</Segment>
           </Grid.Column>
         </Grid.Row>
+
         <Grid.Row stretched>
           <Grid.Column width={13}>
             <Segment>10</Segment>

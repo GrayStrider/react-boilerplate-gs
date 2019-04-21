@@ -18,6 +18,7 @@ import Header from 'components/Header';
 
 import GlobalStyle from '../../global-styles';
 import Playground from '../../pages/Playground';
+import TickTick from '../../pages/Ticktick';
 
 const AppWrapper = styled.div`
   position: absolute;
@@ -38,6 +39,7 @@ export default function App() {
         <Route exact path='/' component={HomePage}/>
         <Route path='/features' component={FeaturePage}/>
         <Route path='/playground' component={Playground}/>
+        <Route path='/ticktick' component={TickTick}/>
         <Route path='' component={NotFoundPage}/>
       </Switch>
       <GlobalStyle/>
