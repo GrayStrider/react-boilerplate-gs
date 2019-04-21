@@ -6,6 +6,10 @@ const Wrapper = styled.div`
   background-color: cadetblue;
   height: 100%;
   padding: 1em;
+  
+  & .ui.grid {
+    margin: 0;
+  }
 `;
 
 function Playground(props) {
@@ -28,8 +32,11 @@ function Playground(props) {
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
-          <Grid.Column floated='right' width={15}>
-            <Segment>2</Segment>
+          <Grid.Column width={13}>
+            <Segment>10</Segment>
+          </Grid.Column>
+          <Grid.Column width={3}>
+            <Segment>6</Segment>
           </Grid.Column>
         </Grid.Row>
 
