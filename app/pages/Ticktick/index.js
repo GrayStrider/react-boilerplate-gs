@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Grid, Header } from 'semantic-ui-react';
+import { Grid, Header, Icon, Image } from 'semantic-ui-react';
 
 const Wrapper = styled.div`
   background-color: black;
@@ -9,9 +9,27 @@ const Wrapper = styled.div`
   flex-direction: column;
   height: 100%;
   
+  .account_pane {
+    padding: 5px;
+    
+    * {
+      vertical-align: middle;
+    }
+    
+    & .icon {
+      float: right;
+      margin-left: 12px;
+      margin-top: 3px;
+      
+    }
+  }
+  
+  & * {
+    color: white;
+  }
+  
   & * .header {
     color: white;
-    background-color: black;
   }
   
   & .ui.grid {
@@ -19,18 +37,12 @@ const Wrapper = styled.div`
     height: 100%;
     
     & .column {
+      padding: 8px;
       box-shadow: 1px 0 0 0 rgba(255,255,255,0.21);
         
-        & .row {
-          background-color: white !important;
-          & .header {
-            color: white;
-          }
+
         }
       }
-    }
-  }
-  
 `;
 
 function TickTick(props) {
@@ -38,7 +50,12 @@ function TickTick(props) {
     <Wrapper>
       <Grid columns='equal'>
         <Grid.Column className='left' width={4}>
-          <Header>Left</Header>
+          <Grid.Row className='account_pane'>
+            <Image src='https://react.semantic-ui.com/images/wireframe/square-image.png' avatar />
+            <span>Username</span>
+            <Icon name='search'/>
+            <Icon name='mail'/>
+          </Grid.Row>
         </Grid.Column>
 
         <Grid.Column className='center' width={7}>
