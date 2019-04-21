@@ -3,12 +3,20 @@ import styled from 'styled-components';
 import { Grid, Segment } from 'semantic-ui-react';
 
 const Wrapper = styled.div`
-  background-color: cadetblue;
+  display: flex;
+  flex-direction: row;
+
+  background-color: darkolivegreen;
   height: 100%;
   padding: 1em;
   
   & .ui.grid {
     margin: 0;
+    
+    & .row:last-child {
+      background-color: red;
+    }
+    
   }
 `;
 
@@ -16,7 +24,7 @@ function Playground(props) {
   return (
     <Wrapper>
       <Grid columns='equal' celled>
-        <Grid.Row stretched>
+        <Grid.Row>
           <Grid.Column>
             <Segment>1</Segment>
           </Grid.Column>
@@ -31,7 +39,7 @@ function Playground(props) {
             <Segment>4</Segment>
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row>
+        <Grid.Row stretched>
           <Grid.Column width={13}>
             <Segment>10</Segment>
           </Grid.Column>
