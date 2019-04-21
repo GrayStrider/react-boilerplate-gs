@@ -11,7 +11,7 @@ const Wrapper = styled.div`
 function Playground(props) {
   return (
     <Wrapper>
-      <Grid columns={3} divided>
+      <Grid columns={3} celled>
         <Grid.Row stretched>
           <Grid.Column>
             <Segment>1</Segment>
@@ -24,8 +24,16 @@ function Playground(props) {
             <Segment>1</Segment>
             <Segment>2</Segment>
             <Segment>3</Segment>
+            <Segment>4</Segment>
           </Grid.Column>
         </Grid.Row>
+        <Grid.Row>
+          <Grid.Column>
+            <Segment>1</Segment>
+            <Segment>2</Segment>
+          </Grid.Column>
+        </Grid.Row>
+
       </Grid>
     </Wrapper>
   );
