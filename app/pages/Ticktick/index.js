@@ -2,12 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import { Grid, Header, Icon, Image } from 'semantic-ui-react';
 
+const listsMock = ['Today', 'Tomorrow', 'This Week', 'Someday'];
+
 const Wrapper = styled.div`
   background-color: black;
   
   display: flex;
   flex-direction: column;
   height: 100%;
+  
+  .list_entry {
+    margin: 0.5em;
+  }
   
   .account_pane {
     padding: 5px;
@@ -30,14 +36,19 @@ const Wrapper = styled.div`
   
   & * .header {
     color: white;
+    padding: 6px;
   }
   
   & .ui.grid {
     margin: 0;
     height: 100%;
     
+    & .row {
+      box-shadow: 0 1px 0 0 rgba(255,255,255,0.21);
+    }
+    
     & .column {
-      padding: 8px;
+      padding: 0;
       box-shadow: 1px 0 0 0 rgba(255,255,255,0.21);
         
 
@@ -55,6 +66,14 @@ function TickTick(props) {
             <span>Username</span>
             <Icon name='search'/>
             <Icon name='mail'/>
+          </Grid.Row>
+
+
+
+          <Grid.Row className='lists_and_filters'>
+            {listsMock.map((entry) => (
+              <div className='list_entry'><Icon name='list'/>{entry}</div>
+            ))}
           </Grid.Row>
         </Grid.Column>
 
