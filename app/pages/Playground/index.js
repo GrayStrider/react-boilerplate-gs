@@ -13,8 +13,19 @@ const Wrapper = styled.div`
   & .ui.grid {
     margin: 0;
     
-    & .row:last-child {
-      background-color: red;
+    & .row:first-child .column:last-child {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      
+      * {
+        margin-bottom: 0;
+        
+        &:first-child {
+          flex: 1;
+          background-color: #9acb2e;
+        }
+      }
     }
     
   }
