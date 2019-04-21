@@ -20,30 +20,27 @@ import GlobalStyle from '../../global-styles';
 import Playground from '../../pages/Playground';
 
 const AppWrapper = styled.div`
-  margin: 0 auto;
-  display: flex;
-  min-height: 100%;
-  padding: 0 16px;
-  flex-direction: column;
+  position: absolute;
+  height: 100%;
+  width: 100%;
 `;
 
 export default function App() {
   return (
     <AppWrapper>
       <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
+        titleTemplate='%s - React.js Boilerplate'
+        defaultTitle='React.js Boilerplate'
       >
-        <meta name="description" content="A React.js Boilerplate application" />
+        <meta name='description' content='A React.js Boilerplate application'/>
       </Helmet>
-      <Header />
       <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/features" component={FeaturePage} />
-        <Route path="/playground" component={Playground} />
-        <Route path="" component={NotFoundPage} />
+        <Route exact path='/' component={HomePage}/>
+        <Route path='/features' component={FeaturePage}/>
+        <Route path='/playground' component={Playground}/>
+        <Route path='' component={NotFoundPage}/>
       </Switch>
-      <GlobalStyle />
+      <GlobalStyle/>
     </AppWrapper>
   );
 }

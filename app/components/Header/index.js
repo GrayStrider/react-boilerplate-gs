@@ -23,10 +23,10 @@ class Header extends React.Component {
         <Dropdown pointing='left' item text='Pages'>
           <Dropdown.Menu>
             <Dropdown.Item link as='a' href='https:\\google.com' target='_blank'>Google</Dropdown.Item>
-            <Dropdown.Item link as={Link} to='/features'>Features</Dropdown.Item>
-            <Dropdown.Item link as={Link} to='/playground'>Playground</Dropdown.Item>
+            <Dropdown.Item as={Link} to='/features'>Features</Dropdown.Item>
+            <Dropdown.Item as={Link} to='/playground'>Playground</Dropdown.Item>
             <Divider/>
-            <Dropdown.Item link as={Link} to='/'>Home</Dropdown.Item>
+            <Dropdown.Item as={Link} to='/'>Home</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
         <Menu.Item link>
