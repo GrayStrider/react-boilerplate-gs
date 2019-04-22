@@ -7,12 +7,12 @@ import { Wrapper } from './styles';
 
 function Task(props) {
   return (
-    <Wrapper>
+    <Wrapper priority={props.priority}>
       <Checkbox
         checked={props.completed}
         onClick={() => props.flipCompleted}
       />
-      <div>{props.content}</div>
+      <span>{props.content}</span>
       {/* Tags */}
       {/* List Name */}
       {/* Repeat Icon */}
@@ -25,15 +25,9 @@ function Task(props) {
 Task.propTypes = {
   completed: PropTypes.object,
   flipCompleted: PropTypes.func,
-  content: PropTypes.string
+  content: PropTypes.string,
+  priority: PropTypes.number
 }
 
-const mapStateToProps = state => ({
-  defaultState: state.default.defaultStateEntry
-});
 
-const mapDispatchToProps = dispatch => ({
-  flipCompleted: (index) => dispatch(flipCompleted(index)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Task);
+export default connect(null, null)(Task);

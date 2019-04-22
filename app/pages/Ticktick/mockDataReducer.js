@@ -5,22 +5,26 @@ const tasks = [
   {
     content: 'Buy Milk',
     description: 'In the store',
-    priority: 1,
+    priority: 3,
+    completed: false
   },
   {
     content: 'Buy Milk',
     description: 'In the store',
     priority: 1,
+    completed: false
   },
   {
     content: 'Buy Milk',
     description: 'In the store',
-    priority: 1,
+    priority: 0,
+    completed: false
   },
   {
     content: 'Buy Milk',
     description: 'In the store',
-    priority: 1,
+    priority: 2,
+    completed: true
   }
 
 ]
