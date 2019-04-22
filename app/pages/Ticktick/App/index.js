@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, Header, Icon, Image} from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { Wrapper } from './styles';
-import Lists from './Lists';
+import Lists from '../components/Lists';
 
 function TickTick(props) {
   return (
@@ -15,16 +15,18 @@ function TickTick(props) {
             <Icon name='search'/>
             <Icon name='mail'/>
           </Grid.Row>
+
           <Lists/>
+
         </Grid.Column>
 
-        <Grid.Column className='center' width={7}>
+        <Grid.Column className='center' width={6}>
           <Grid.Row>
             <Header>Center</Header>
           </Grid.Row>
         </Grid.Column>
 
-        <Grid.Column className='right' width={5}>
+        <Grid.Column className='right' width={6}>
           <Header>Right</Header>
         </Grid.Column>
 

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import mainReducer from './reducer';
-import listsReducer from './Lists/reducer';
+import mainReducer from './App/reducer';
+import listsReducer from './components/Lists/reducer';
 
 const ticktickReducer = combineReducers({
   main: mainReducer,

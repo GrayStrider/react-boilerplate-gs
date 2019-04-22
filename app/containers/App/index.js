@@ -14,11 +14,10 @@ import { Switch, Route } from 'react-router-dom';
 import HomePage from 'containers/HomePage/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
-import Header from 'components/Header';
 
 import GlobalStyle from '../../global-styles';
 import Playground from '../../pages/Playground';
-import TickTick from '../../pages/Ticktick';
+import TickTick from '../../pages/Ticktick/App';
 
 const AppWrapper = styled.div`
   position: absolute;
