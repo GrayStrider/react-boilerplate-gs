@@ -3,6 +3,7 @@ import { Grid, Header, Icon, Image} from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { Wrapper } from './styles';
 import Lists from '../components/Lists';
+import TaskList from '../components/TaskList';
 
 function TickTick(props) {
   return (
@@ -24,6 +25,8 @@ function TickTick(props) {
           <Grid.Row>
             <Header>Center</Header>
           </Grid.Row>
+
+          <TaskList/>
         </Grid.Column>
 
         <Grid.Column className='right' width={6}>

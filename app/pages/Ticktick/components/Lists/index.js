@@ -9,7 +9,9 @@ import { selectTab } from './actions';
 function Lists(props) {
   return (
     <Wrapper>
-      <Menu pointing secondary inverted>
+      <Menu
+        pointing secondary inverted>
+
         {Object.keys(menuItems).map(
           (name, key) => (
 
@@ -24,12 +26,18 @@ function Lists(props) {
         )}
       </Menu>
 
-      <Grid.Row className='lists_and_filters'>
+
+      <Grid.Row
+        className='lists_and_filters'>
         {[lists, tags, customLists][props.selectedTab - 1]
           .map((entry, key) => (
-            <div className='list_entry' key={key}><Icon name='list'/>{entry}</div>
+
+            <div className='list_entry' key={key}>
+              <Icon name='list'/>{entry}
+            </div>
           ))}
       </Grid.Row>
+
     </Wrapper>
   );
 }
