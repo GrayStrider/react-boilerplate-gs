@@ -1,9 +1,8 @@
-export const SELECT_MENU_TASK_LIST_TAB = 'SELECT_MENU_TASK_LIST_TAB';
+export const DEFAULT_ACTION = 'DEFAULT_ACTION';
 
-
-export function selectMenuTaskListsTab(payload) {
+export function defaultAction(payload) {
   return {
-    type: SELECT_MENU_TASK_LIST_TAB,
+    type: DEFAULT_ACTION,
     payload,
   };
 }
