@@ -8,16 +8,21 @@ function TaskList(props) {
   return (
     <Wrapper>
       {props.defaultState}
+      {props.tasks.map((value, index) => (
+        <div>[{index}]: {value.content}</div>
+      ))}
     </Wrapper>
   );
 }
 
 TaskList.propTypes = {
   defaultState: PropTypes.object,
-}
+  tasks: PropTypes.array,
+};
 
 const mapStateToProps = state => ({
-  defaultState: state.ticktick.taskList.defaultStateEntry
+  defaultState: state.ticktick.taskList.defaultStateEntry,
+  tasks: state.ticktick.data.tasks,
 });
 
 const mapDispatchToProps = dispatch => ({
