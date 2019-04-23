@@ -7,7 +7,7 @@ import { Wrapper } from './styles';
 
 function Task(props) {
   return (
-    <Wrapper priority={props.priority}>
+    <Wrapper priority={props.priority} completed={props.completed}>
       <Checkbox
         checked={props.completed}
         onClick={() => props.flipCompleted}
