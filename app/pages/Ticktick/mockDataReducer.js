@@ -3,14 +3,14 @@ import { DEFAULT_ACTION } from './actions';
 
 const tasks = [
   {
-    id: '0',
+    id: 0,
     content: 'Buy Milk',
     description: 'In the store',
     priority: 3,
     completed: false,
   },
   {
-    id: '1',
+    id: 1,
     content: 'Buy Milk',
     description: 'In the store',
     priority: 1,
@@ -18,7 +18,7 @@ const tasks = [
     tags: ['1','2']
   },
   {
-    id: '2',
+    id: 2,
     content: 'Buy Milk',
     description: 'In the store',
     priority: 0,
@@ -26,7 +26,7 @@ const tasks = [
     tags: ['1']
   },
   {
-    id: '3',
+    id: 3,
     content: 'Buy Milk',
     description: 'In the store',
     priority: 2,
@@ -38,12 +38,12 @@ const tasks = [
 
 const tags = [
   {
-    id: '1',
+    id: 0,
     name: 'Home',
     tasksWith: ['0', '2']
   },
   {
-    id: '2',
+    id: 1,
     name: 'Work',
     tasksWith: ['1']
   }
@@ -52,13 +52,13 @@ const tags = [
 
 const predefinedGroups = [
   {
-    id: 0,
+    id: 2,
     name: 'Inbox',
     tasksIn: ['3'],
     displayed: true
   },
   {
-    id: 1,
+    id: 3,
     name: 'Today',
     tasksIn: [],
     displayed: true
@@ -68,12 +68,12 @@ const predefinedGroups = [
 
 const groups = [
   {
-    id: 0,
+    id: 4,
     name: 'Personal',
     tasksIn: ['0', '2']
   },
   {
-    id: 1,
+    id: 5,
     name: 'Vacation',
     tasksIn: ['1']
   }
@@ -82,7 +82,7 @@ const groups = [
 
 const customLists = [
   {
-    id: 0,
+    id: 6,
     name: 'WIP'
   }
 ]

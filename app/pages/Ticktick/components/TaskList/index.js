@@ -8,7 +8,7 @@ import Task from './Task';
 function TaskList(props) {
   return (
     <Wrapper>
-      {props.tasks.map((value, index) => (
+      {props.tasks.map((value) => (
         <Task
           content={value.content}
           completed={value.completed}

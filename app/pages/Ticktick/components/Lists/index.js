@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Icon, Menu, Grid } from 'semantic-ui-react';
 import { Wrapper } from './styles';
 import { menuItems } from './_mock';
-import { selectTab } from './actions';
+import { selectList, selectTab } from './actions';
 
 function Lists(props) {
   return (
@@ -29,15 +29,18 @@ function Lists(props) {
 
       <Grid.Row
         className='lists_and_filters'>
+        <Menu vertical inverted>
+          {[props.groups, props.tags, props.customLists][props.selectedTab - 1]
+            .map((entry) => (
 
-        {[props.groups, props.tags, props.customLists][props.selectedTab - 1]
-          .map((entry) => (
-
-            <div className='list_entry' key={entry.id}>
-              <Icon name='list'/>{entry.name}
-            </div>
-          ))}
-
+              <Menu.Item
+                key={entry.id}
+                onClick={() => props.selectList(entry.id)}
+                active={entry.id === props.selectedList}>
+                <span><Icon name='list'/>{entry.name}</span>
+              </Menu.Item>
+            ))}
+        </Menu>
       </Grid.Row>
 
     </Wrapper>
@@ -46,7 +49,11 @@ function Lists(props) {
 
 Lists.propTypes = {
   selectedTab: PropTypes.number,
+  selectedList: PropTypes.number,
+
   selectTab: PropTypes.func,
+  selectList: PropTypes.func,
+
   groups: PropTypes.array,
   tags: PropTypes.array,
   customLists: PropTypes.array
@@ -54,6 +61,8 @@ Lists.propTypes = {
 
 const mapStateToProps = state => ({
   selectedTab: state.ticktick.lists.selectedTab,
+  selectedList: state.ticktick.lists.selectedList,
+
   groups: state.ticktick.data.groups,
   tags: state.ticktick.data.tags,
   customLists: state.ticktick.data.customLists,
@@ -61,6 +70,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   selectTab: (index) => dispatch(selectTab(index)),
+  selectList: (index) => dispatch(selectList(index)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Lists);
