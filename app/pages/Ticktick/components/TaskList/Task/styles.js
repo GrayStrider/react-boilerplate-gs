@@ -16,6 +16,9 @@ export const Wrapper = styled.div`
   
     & *:after {
       color: white !important;
+      font-size: 19px !important;
+      top: -2px !important;
+      
     }
   }
 `;
