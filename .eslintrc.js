@@ -62,7 +62,7 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'react/jsx-closing-tag-location': 0,
     'react/forbid-prop-types': 0,
-    'react/jsx-first-prop-new-line': [2, 'multiline'],
+    'react/jsx-first-prop-new-line': 0,
     'react/jsx-filename-extension': 0,
     'react/jsx-no-target-blank': 0,
     'react/jsx-uses-vars': 2,
@@ -74,6 +74,7 @@ module.exports = {
     'redux-saga/yield-effects': 2,
     'require-yield': 0,
     'react/no-array-index-key': 0,
+    'spaced-comment': 0,
   },
   settings: {
     'import/resolver': {

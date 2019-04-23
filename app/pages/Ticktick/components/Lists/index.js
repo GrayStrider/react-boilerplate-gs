@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Icon, Menu, Grid } from 'semantic-ui-react';
 import { Wrapper } from './styles';
-import { menuItems } from './_mock';
 import { selectList, selectTab } from './actions';
+import { menuCategories } from '../../mockDataReducer';
 
 function Lists(props) {
   return (
@@ -12,32 +12,30 @@ function Lists(props) {
       <Menu
         pointing secondary inverted>
 
-        {Object.keys(menuItems).map(
-          (name, key) => (
+        {Object.keys(menuCategories).map(
+          (key) => (
 
             <Menu.Item
-              key={menuItems[key].id}
-              active={menuItems[key].id === props.selectedTab}
-              onClick={() => props.selectTab(menuItems[key].id)}
+              key={key}
+              active={key === props.selectedTab}
+              onClick={() => props.selectTab(key)}
             >
-              {menuItems[key].name}
+              {key}
             </Menu.Item>
           ),
         )}
       </Menu>
 
-
       <Grid.Row
         className='lists_and_filters'>
-        <Menu vertical inverted>
-          {[props.groups, props.tags, props.customLists][props.selectedTab - 1]
-            .map((entry) => (
+        <Menu vertical inverted fluid>
+          {Object.keys(props.data[props.selectedTab]).map((key) => (
 
               <Menu.Item
-                key={entry.id}
-                onClick={() => props.selectList(entry.id)}
-                active={entry.id === props.selectedList}>
-                <span><Icon name='list'/>{entry.name}</span>
+                key={key}
+                onClick={() => props.selectList(key)}
+                active={key === props.selectedList}>
+                <span><Icon name='list'/>{props.data[props.selectedTab][key].name}</span>
               </Menu.Item>
             ))}
         </Menu>
@@ -48,7 +46,7 @@ function Lists(props) {
 }
 
 Lists.propTypes = {
-  selectedTab: PropTypes.number,
+  selectedTab: PropTypes.string,
   selectedList: PropTypes.number,
 
   selectTab: PropTypes.func,
@@ -56,13 +54,15 @@ Lists.propTypes = {
 
   groups: PropTypes.array,
   tags: PropTypes.array,
-  customLists: PropTypes.array
+  customLists: PropTypes.array,
+  data: PropTypes.object
 }
 
 const mapStateToProps = state => ({
   selectedTab: state.ticktick.lists.selectedTab,
   selectedList: state.ticktick.lists.selectedList,
 
+  data: state.ticktick.data,
   groups: state.ticktick.data.groups,
   tags: state.ticktick.data.tags,
   customLists: state.ticktick.data.customLists,

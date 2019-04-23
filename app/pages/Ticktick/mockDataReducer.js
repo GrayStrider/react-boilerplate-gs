@@ -1,98 +1,93 @@
 import produce from 'immer';
 import { DEFAULT_ACTION } from './actions';
 
-const tasks = [
-  {
-    id: 0,
-    content: 'Buy Milk',
+const tasks = {
+  '0': {
+    content: 'Buy Soap',
     description: 'In the store',
     priority: 3,
     completed: false,
   },
-  {
-    id: 1,
-    content: 'Buy Milk',
+  '1': {
+    content: 'Buy Bread',
     description: 'In the store',
     priority: 1,
     completed: false,
-    tags: ['1','2']
   },
-  {
-    id: 2,
+  '2': {
     content: 'Buy Milk',
     description: 'In the store',
     priority: 0,
     completed: false,
-    tags: ['1']
   },
-  {
-    id: 3,
-    content: 'Buy Milk',
+  '3': {
+    content: 'Buy Water',
     description: 'In the store',
     priority: 2,
     completed: true,
-    tags: []
-  }
+  },
 
-]
+};
 
-const tags = [
-  {
-    id: 0,
+const tags = {
+  '0': {
     name: 'Home',
-    tasksWith: ['0', '2']
+    tasks: ['0', '2'],
   },
-  {
-    id: 1,
+  '1': {
     name: 'Work',
-    tasksWith: ['1']
-  }
-]
-
-
-const predefinedGroups = [
-  {
-    id: 2,
-    name: 'Inbox',
-    tasksIn: ['3'],
-    displayed: true
+    tasks: ['1', '3'],
   },
-  {
-    id: 3,
-    name: 'Today',
-    tasksIn: [],
-    displayed: true
+}
+
+
+const predefinedGroups = {
+  'inbox': {
+    tasks: ['3'],
+    displayed: true,
   },
 
-]
+}
 
-const groups = [
-  {
-    id: 4,
+const groups = {
+  '4': {
     name: 'Personal',
-    tasksIn: ['0', '2']
+    tasks: ['0', '2'],
   },
-  {
-    id: 5,
+  '5': {
     name: 'Vacation',
-    tasksIn: ['1']
-  }
+    tasks: ['1'],
+  },
 
-]
+}
 
-const customLists = [
-  {
-    id: 6,
-    name: 'WIP'
-  }
-]
+const custom = {
+  '6': {
+    name: 'WIP',
+    tasks: []
+  },
+}
+
+export const menuCategories = {
+  groups,
+  tags,
+  custom,
+};
+
+const spreadedCategories = {
+  ...groups,
+  ...tags,
+  ...custom
+}
+
 export const initialState = {
   tasks,
-  tags,
   predefinedGroups,
   groups,
-  customLists
-}
+  tags,
+  custom,
+  spreadedCategories,
+};
 
 /* eslint-disable default-case, no-param-reassign */
 const dataReducer = (state = initialState, action) =>

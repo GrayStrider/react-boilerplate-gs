@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Wrapper } from './styles';
 import Lists from '../components/Lists';
 import TaskList from '../components/TaskList';
+import InputNewTask from '../components/InputNewTask';
 
 function TickTick(props) {
   return (
@@ -22,9 +23,7 @@ function TickTick(props) {
         </Grid.Column>
 
         <Grid.Column className='center' width={6}>
-          <Grid.Row>
-            <Header>Center</Header>
-          </Grid.Row>
+          <InputNewTask/>
 
           <TaskList/>
         </Grid.Column>

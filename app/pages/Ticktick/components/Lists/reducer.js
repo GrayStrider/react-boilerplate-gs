@@ -2,7 +2,7 @@ import produce from 'immer';
 import { SELECT_LIST, SELECT_TAB } from './actions';
 
 export const initialState = {
-  selectedTab: 1,
+  selectedTab: 'tags',
   selectedList: 0
 };
 
