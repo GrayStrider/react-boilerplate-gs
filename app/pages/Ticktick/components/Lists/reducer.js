@@ -1,9 +1,10 @@
 import produce from 'immer';
 import { SELECT_LIST, SELECT_TAB } from './actions';
+import { groups } from '../../mockDataReducer';
 
 export const initialState = {
   selectedTab: 'tags',
-  selectedList: 0
+  selectedList: Object.keys(groups)[0]
 };
 
 /* eslint-disable default-case, no-param-reassign */
