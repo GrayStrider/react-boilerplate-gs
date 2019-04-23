@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Header, Input } from 'semantic-ui-react';
 import { defaultAction } from './actions';
 import { Wrapper } from './styles';
+//---
 
 function InputNewTask(props) {
   const placeholder = `Add new task in ${props.categories[props.currentList].name}`;
@@ -18,6 +19,7 @@ function InputNewTask(props) {
       {/*{show completed button}*/}
 
       {/*FORM, input box*/}
+      {/*TODO track cusror position and display ustom ui for tag selection*/}
       <Input
         inverted
         placeholder={placeholder}
