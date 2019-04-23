@@ -50,15 +50,23 @@ const tags = [
 ]
 
 
-const PredefinedGroups = [
+const predefinedGroups = [
   {
     id: 0,
     name: 'Inbox',
-    tasksIn: ['3']
-  }
+    tasksIn: ['3'],
+    displayed: true
+  },
+  {
+    id: 1,
+    name: 'Today',
+    tasksIn: [],
+    displayed: true
+  },
+
 ]
 
-const Groups = [
+const groups = [
   {
     id: 0,
     name: 'Personal',
@@ -71,9 +79,19 @@ const Groups = [
   }
 
 ]
+
+const customLists = [
+  {
+    id: 0,
+    name: 'WIP'
+  }
+]
 export const initialState = {
   tasks,
-  tags
+  tags,
+  predefinedGroups,
+  groups,
+  customLists
 }
 
 /* eslint-disable default-case, no-param-reassign */

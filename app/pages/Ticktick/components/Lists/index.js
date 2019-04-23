@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Icon, Menu, Grid } from 'semantic-ui-react';
 import { Wrapper } from './styles';
-import { customLists, lists, menuItems, tags } from './_mock';
+import { menuItems } from './_mock';
 import { selectTab } from './actions';
 
 function Lists(props) {
@@ -29,13 +29,15 @@ function Lists(props) {
 
       <Grid.Row
         className='lists_and_filters'>
-        {[lists, tags, customLists][props.selectedTab - 1]
-          .map((entry, key) => (
 
-            <div className='list_entry' key={key}>
-              <Icon name='list'/>{entry}
+        {[props.groups, props.tags, props.customLists][props.selectedTab - 1]
+          .map((entry) => (
+
+            <div className='list_entry' key={entry.id}>
+              <Icon name='list'/>{entry.name}
             </div>
           ))}
+
       </Grid.Row>
 
     </Wrapper>
@@ -44,11 +46,17 @@ function Lists(props) {
 
 Lists.propTypes = {
   selectedTab: PropTypes.number,
-  selectTab: PropTypes.func
+  selectTab: PropTypes.func,
+  groups: PropTypes.array,
+  tags: PropTypes.array,
+  customLists: PropTypes.array
 }
 
 const mapStateToProps = state => ({
-  selectedTab: state.ticktick.lists.selectedTab
+  selectedTab: state.ticktick.lists.selectedTab,
+  groups: state.ticktick.data.groups,
+  tags: state.ticktick.data.tags,
+  customLists: state.ticktick.data.customLists,
 });
 
 const mapDispatchToProps = dispatch => ({
