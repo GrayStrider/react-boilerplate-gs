@@ -3,18 +3,21 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Wrapper } from './styles';
 import Task from '../Task';
+import Scrollbar from '../Scrollbar';
 
 function TaskList(props) {
   return (
     <Wrapper>
-      {
-        props.tasksKeys
-          .filter((key) => (props.tasksInSelectedList.includes(key)))
-          .map((taskID) => (
-              <Task id={taskID}/>
-            ),
-          )
-      }
+      <Scrollbar style={{height: 300 }}>
+        {
+          props.tasksKeys
+            .filter((key) => (props.tasksInSelectedList.includes(key)))
+            .map((taskID) => (
+                <Task id={taskID}/>
+              ),
+            )
+        }
+      </Scrollbar>
     </Wrapper>
   );
 }
