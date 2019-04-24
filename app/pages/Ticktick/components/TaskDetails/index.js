@@ -7,17 +7,23 @@ import { Wrapper } from './styles';
 function TaskDetails(props) {
   return (
     <Wrapper>
-      {props.defaultState}
+      {props.details ?
+      <div>Content: {props.details.content}
+      <hr/>
+           Details: {props.details.description}
+      </div> : 'Please, select a task from the list.'
+      }
     </Wrapper>
   );
 }
 
 TaskDetails.propTypes = {
-  defaultState: PropTypes.object,
+  details: PropTypes.string,
 }
 
 const mapStateToProps = state => ({
-  defaultState: state.default.defaultStateEntry
+  details: state.ticktick.tasksList.selectedTask ?
+  state.ticktick.data.tasks[state.ticktick.tasksList.selectedTask] : null
 });
 
 const mapDispatchToProps = dispatch => ({
