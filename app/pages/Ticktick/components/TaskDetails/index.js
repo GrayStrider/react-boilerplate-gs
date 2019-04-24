@@ -3,14 +3,17 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { defaultAction } from './actions';
 import { Wrapper } from './styles';
+import Checkbox from '../Checkbox';
 
 function TaskDetails(props) {
   return (
     <Wrapper>
       {props.details ?
-      <div>Content: {props.details.content}
+
+      <div>
+        <span><Checkbox id={props.id}/> {props.details.content}</span>
       <hr/>
-           Details: {props.details.description}
+           Description: {props.details.description}
       </div> : 'Please, select a task from the list.'
       }
     </Wrapper>
@@ -19,11 +22,13 @@ function TaskDetails(props) {
 
 TaskDetails.propTypes = {
   details: PropTypes.string,
+  id: PropTypes.string
 }
 
 const mapStateToProps = state => ({
   details: state.ticktick.tasksList.selectedTask ?
-  state.ticktick.data.tasks[state.ticktick.tasksList.selectedTask] : null
+  state.ticktick.data.tasks[state.ticktick.tasksList.selectedTask] : null,
+  id: state.ticktick.tasksList.selectedTask
 });
 
 const mapDispatchToProps = dispatch => ({

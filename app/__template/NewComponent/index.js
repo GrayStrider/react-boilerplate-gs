@@ -16,7 +16,7 @@ NewComponent.propTypes = {
   defaultState: PropTypes.object,
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
   defaultState: state.default.defaultStateEntry
 });
 
