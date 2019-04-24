@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Checkbox } from 'semantic-ui-react';
 import { Wrapper } from './styles';
 import { selectTask, toggleDone } from './actions';
+import Checkbox from '../Checkbox';
 
 function Task(props) {
   return (
@@ -11,10 +11,7 @@ function Task(props) {
              onClick={() => props.selectTask(props.id)}
              selected={props.selected}
              completed={props.completed}>
-      <Checkbox
-        checked={props.completed}
-        onClick={() => props.toggleDone(props.id)}
-      />
+      <Checkbox id={props.id}/>
       <span>{props.content}</span>
       {/* Tags */}
       {/* List Name */}
@@ -28,7 +25,6 @@ function Task(props) {
 Task.propTypes = {
   id: PropTypes.string,
   completed: PropTypes.object,
-  toggleDone: PropTypes.func,
   content: PropTypes.string,
   priority: PropTypes.number,
   selectTask: PropTypes.func,
