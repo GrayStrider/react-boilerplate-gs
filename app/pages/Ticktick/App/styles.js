@@ -47,6 +47,7 @@ export const Wrapper = styled.div`
     & .column {
       padding: 0;
       box-shadow: 1px 0 0 0 rgba(255,255,255,0.21);
+      height: 100%;
         
 
         }
