@@ -1,6 +1,6 @@
 import produce from 'immer';
 import { Chance } from 'chance';
-import { TOGGLE_DONE } from './components/TaskList/Task/actions';
+import { TOGGLE_DONE } from './components/Task/actions';
 
 const chance = new Chance(Math.random);
 

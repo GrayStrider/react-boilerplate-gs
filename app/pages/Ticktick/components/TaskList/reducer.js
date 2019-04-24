@@ -1,5 +1,5 @@
 import produce from 'immer';
-import { SELECT_TASK } from './Task/actions';
+import { SELECT_TASK } from '../Task/actions';
 
 
 export const initialState = {

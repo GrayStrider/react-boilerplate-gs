@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Wrapper } from './styles';
-import Task from './Task';
+import Task from '../Task';
 
 function TaskList(props) {
   return (
@@ -16,6 +16,7 @@ function TaskList(props) {
            completed={props.tasks[taskID].completed}
            priority={props.tasks[taskID].priority}
            id={taskID}
+           selected={props.selectedTask === taskID}
          />
        ))}
     </Wrapper>
@@ -25,13 +26,15 @@ function TaskList(props) {
 TaskList.propTypes = {
   tasks: PropTypes.array,
   selectedList: PropTypes.number,
-  data: PropTypes.object
+  data: PropTypes.object,
+  selectedTask: PropTypes.string
 };
 
 const mapStateToProps = state => ({
   tasks: state.ticktick.data.tasks,
   selectedList: state.ticktick.lists.selectedList,
-  data: state.ticktick.data
+  data: state.ticktick.data,
+  selectedTask: state.ticktick.tasksList.selectedTask
 });
 
 export default connect(mapStateToProps, null)(TaskList);
