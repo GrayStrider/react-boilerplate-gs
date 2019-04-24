@@ -7,34 +7,27 @@ import Task from '../Task';
 function TaskList(props) {
   return (
     <Wrapper>
-       {Object.keys(props.tasks)
-         .filter((key) => (
-           props.data.spreadedCategories[props.selectedList].tasks.includes(key)))
-         .map((taskID) => (
-         <Task
-           content={props.tasks[taskID].content}
-           completed={props.tasks[taskID].completed}
-           priority={props.tasks[taskID].priority}
-           id={taskID}
-           selected={props.selectedTask === taskID}
-         />
-       ))}
+      {
+        props.tasksKeys
+          .filter((key) => (props.tasksInSelectedList.includes(key)))
+          .map((taskID) => (
+              <Task id={taskID}/>
+            ),
+          )
+      }
     </Wrapper>
   );
 }
 
 TaskList.propTypes = {
-  tasks: PropTypes.array,
-  selectedList: PropTypes.number,
-  data: PropTypes.object,
-  selectedTask: PropTypes.string
+  tasksKeys: PropTypes.array,
+  tasksInSelectedList: PropTypes.array,
 };
 
-const mapStateToProps = state => ({
-  tasks: state.ticktick.data.tasks,
-  selectedList: state.ticktick.lists.selectedList,
-  data: state.ticktick.data,
-  selectedTask: state.ticktick.tasksList.selectedTask
+const mapStateToProps = (state) => ({
+  tasksKeys: Object.keys(state.ticktick.data.tasks),
+  tasksInSelectedList: state.ticktick.data.spreadedCategories[state.ticktick.lists.selectedList].tasks,
+  selectedTask: state.ticktick.tasksList.selectedTask,
 });
 
 export default connect(mapStateToProps, null)(TaskList);

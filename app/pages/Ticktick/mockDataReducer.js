@@ -4,8 +4,11 @@ import { TOGGLE_DONE } from './components/Task/actions';
 
 const chance = new Chance(Math.random);
 
+const MOCK_TASKS_AMOUNT = 1000;
+
+
 const tasks = {}
-for (let i=0; i<100; i+=1) {
+for (let i=0; i<MOCK_TASKS_AMOUNT; i+=1) {
   tasks[chance.guid()] = {
     content: chance.sentence({words: chance.integer({min: 2, max: 6})}),
     description: chance.sentence({words: 10}),
@@ -19,7 +22,7 @@ const tags = {}
 for (let i=0; i<10; i+=1) {
   tags[chance.guid()] = {
     name: chance.word({length: chance.integer({min: 3, max: 10})}),
-    tasks: chance.pickset(Object.keys(tasks), chance.integer({min: 1, max: 10}))
+    tasks: chance.pickset(Object.keys(tasks), chance.integer({min: 1, max: MOCK_TASKS_AMOUNT / 20}))
   }
 }
 
@@ -30,7 +33,7 @@ try {
   for (let i=0; i<4; i+=1) {
     groups[chance.guid()] = {
       name: chance.capitalize(chance.word({length: chance.integer({min: 3, max: 10})})),
-      tasks: randomTasksToDistribute.splice(0, chance.integer({min: 0, max: 20}))
+      tasks: randomTasksToDistribute.splice(0, chance.integer({min: 0, max: MOCK_TASKS_AMOUNT / 6}))
     }
   }
 } catch (e) {

@@ -7,10 +7,8 @@ import Checkbox from '../Checkbox';
 
 function Task(props) {
   return (
-    <Wrapper priority={props.priority}
-             onClick={() => props.selectTask(props.id)}
-             selected={props.selected}
-             completed={props.completed}>
+    <Wrapper onClick={() => props.selectTask(props.id)}
+             selected={props.selected}>
       <Checkbox id={props.id}/>
       <span>{props.content}</span>
       {/* Tags */}
@@ -24,16 +22,19 @@ function Task(props) {
 
 Task.propTypes = {
   id: PropTypes.string,
-  completed: PropTypes.object,
   content: PropTypes.string,
-  priority: PropTypes.number,
   selectTask: PropTypes.func,
   selected: PropTypes.bool
 }
+
+const mapStateToProps = (state, ownProps) => ({
+  content: state.ticktick.data.tasks[ownProps.id].content,
+  selected: state.ticktick.tasksList.selectedTask === ownProps.id,
+});
 
 const mapDispatchToProps = dispatch => ({
   toggleDone: (index) => dispatch(toggleDone(index)),
   selectTask: (index) => dispatch(selectTask(index)),
 });
 
-export default connect(null, mapDispatchToProps)(Task);
+export default connect(mapStateToProps, mapDispatchToProps)(Task);
