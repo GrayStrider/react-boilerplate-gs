@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { defaultAction } from './actions';
 import { Wrapper } from './styles';
 import Task from './Task';
 
@@ -16,6 +15,7 @@ function TaskList(props) {
            content={props.tasks[taskID].content}
            completed={props.tasks[taskID].completed}
            priority={props.tasks[taskID].priority}
+           id={taskID}
          />
        ))}
     </Wrapper>
@@ -34,8 +34,4 @@ const mapStateToProps = state => ({
   data: state.ticktick.data
 });
 
-const mapDispatchToProps = dispatch => ({
-  defaultAction: (index) => dispatch(defaultAction(index)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(TaskList);
+export default connect(mapStateToProps, null)(TaskList);

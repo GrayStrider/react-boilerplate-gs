@@ -1,6 +1,6 @@
 import produce from 'immer';
 import { Chance } from 'chance';
-import { DEFAULT_ACTION } from './actions';
+import { TOGGLE_DONE } from './components/TaskList/Task/actions';
 
 const chance = new Chance(Math.random);
 
@@ -79,8 +79,8 @@ export const initialState = {
 const dataReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case DEFAULT_ACTION:
-        draft.defaultStateEntry = action.payload;
+      case TOGGLE_DONE:
+        draft.tasks[action.payload].completed = !draft.tasks[action.payload].completed
         break;
     }
   });

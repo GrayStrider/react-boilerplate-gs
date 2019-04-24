@@ -3,7 +3,7 @@ import { SELECT_LIST, SELECT_TAB } from './actions';
 import { groups } from '../../mockDataReducer';
 
 export const initialState = {
-  selectedTab: 'tags',
+  selectedTab: 'groups',
   selectedList: Object.keys(groups)[0]
 };
 

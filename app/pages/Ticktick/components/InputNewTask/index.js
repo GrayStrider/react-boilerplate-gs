@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Header, Input } from 'semantic-ui-react';
-import { defaultAction } from './actions';
 import { Wrapper } from './styles';
 //---
 

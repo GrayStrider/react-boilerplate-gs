@@ -2,15 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Checkbox } from 'semantic-ui-react';
-import { flipCompleted } from './actions';
 import { Wrapper } from './styles';
+import { toggleDone } from './actions';
 
 function Task(props) {
   return (
     <Wrapper priority={props.priority} completed={props.completed}>
       <Checkbox
         checked={props.completed}
-        onClick={() => props.flipCompleted}
+        onClick={() => props.toggleDone(props.id)}
       />
       <span>{props.content}</span>
       {/* Tags */}
@@ -23,11 +23,15 @@ function Task(props) {
 }
 
 Task.propTypes = {
+  id: PropTypes.string,
   completed: PropTypes.object,
-  flipCompleted: PropTypes.func,
+  toggleDone: PropTypes.func,
   content: PropTypes.string,
   priority: PropTypes.number
 }
 
+const mapDispatchToProps = dispatch => ({
+  toggleDone: (index) => dispatch(toggleDone(index)),
+});
 
-export default connect(null, null)(Task);
+export default connect(null, mapDispatchToProps)(Task);

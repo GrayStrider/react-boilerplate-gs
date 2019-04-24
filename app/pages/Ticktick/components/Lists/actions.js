@@ -1,4 +1,3 @@
-export const DEFAULT_ACTION = 'DEFAULT_ACTION';
 export const SELECT_TAB = 'SELECT_TAB';
 export const SELECT_LIST = 'SELECT_LIST';
 

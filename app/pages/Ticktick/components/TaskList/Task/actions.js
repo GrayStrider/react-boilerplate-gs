@@ -1,8 +1,8 @@
-export const FLIP_COMPLETED = 'FLIP_COMPLETED';
+export const TOGGLE_DONE = 'TOGGLE_DONE';
 
-export function flipCompleted(payload) {
+export function toggleDone(payload) {
   return {
-    type: FLIP_COMPLETED,
+    type: TOGGLE_DONE,
     payload,
   };
 }
