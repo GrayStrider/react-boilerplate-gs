@@ -5,6 +5,7 @@ import { Wrapper } from './styles';
 import Lists from '../components/Lists';
 import TaskList from '../components/TaskList';
 import InputNewTask from '../components/InputNewTask';
+import TaskDetails from '../components/TaskDetails';
 
 function TickTick(props) {
   return (
@@ -24,12 +25,11 @@ function TickTick(props) {
 
         <Grid.Column className='center' width={6}>
           <InputNewTask/>
-
           <TaskList/>
         </Grid.Column>
 
         <Grid.Column className='right' width={6}>
-          <Header>Right</Header>
+          <TaskDetails/>
         </Grid.Column>
 
       </Grid>

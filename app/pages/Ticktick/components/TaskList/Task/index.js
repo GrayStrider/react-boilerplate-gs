@@ -3,11 +3,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Checkbox } from 'semantic-ui-react';
 import { Wrapper } from './styles';
-import { toggleDone } from './actions';
+import { selectTask, toggleDone } from './actions';
 
 function Task(props) {
   return (
-    <Wrapper priority={props.priority} completed={props.completed}>
+    <Wrapper priority={props.priority}
+             onClick={() => props.selectTask(props.id)}
+             completed={props.completed}>
       <Checkbox
         checked={props.completed}
         onClick={() => props.toggleDone(props.id)}
@@ -27,11 +29,13 @@ Task.propTypes = {
   completed: PropTypes.object,
   toggleDone: PropTypes.func,
   content: PropTypes.string,
-  priority: PropTypes.number
+  priority: PropTypes.number,
+  selectTask: PropTypes.func
 }
 
 const mapDispatchToProps = dispatch => ({
   toggleDone: (index) => dispatch(toggleDone(index)),
+  selectTask: (index) => dispatch(selectTask(index)),
 });
 
 export default connect(null, mapDispatchToProps)(Task);
