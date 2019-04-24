@@ -21,7 +21,7 @@ function TaskDetails(props) {
 }
 
 TaskDetails.propTypes = {
-  details: PropTypes.string,
+  details: PropTypes.object,
   id: PropTypes.string
 }
 

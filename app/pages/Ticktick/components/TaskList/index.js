@@ -12,7 +12,7 @@ function TaskList(props) {
           props.tasksKeys
             .filter((key) => (props.tasksInSelectedList.includes(key)))
             .map((taskID) => (
-                <Task id={taskID}/>
+                <Task id={taskID} key={taskID}/>
               ),
             )
         }

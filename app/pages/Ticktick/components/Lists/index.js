@@ -47,14 +47,11 @@ function Lists(props) {
 
 Lists.propTypes = {
   selectedTab: PropTypes.string,
-  selectedList: PropTypes.number,
+  selectedList: PropTypes.string,
 
   selectTab: PropTypes.func,
   selectList: PropTypes.func,
 
-  groups: PropTypes.array,
-  tags: PropTypes.array,
-  customLists: PropTypes.array,
   data: PropTypes.object
 }
 
