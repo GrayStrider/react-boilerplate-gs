@@ -1,7 +1,8 @@
 language: node_js
 node_js:
-- node
-- lts/*
+  - 'node'
+  - 'lts/*'
+
 script:
 - node ./internals/scripts/generate-templates-for-linting
 - npm test -- --maxWorkers=4
@@ -13,7 +14,9 @@ before_install:
 notifications:
   email:
     on_failure: change
-after_success: npm run coveralls
+
+after_success: 'npm run coveralls'
+
 cache:
   directories:
   - node_modules
