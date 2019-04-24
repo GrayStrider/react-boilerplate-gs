@@ -1,19 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import ScrollArea from 'react-scrollbar';
 import { Wrapper } from './styles';
 import Task from '../Task';
 
 function TaskList(props) {
   return (
     <Wrapper>
-      <ScrollArea
-        speed={0.8}
-        className="area"
-        contentClassName="content"
-        horizontal={false}
-      >
+
         {
           props.tasksKeys
             .filter((key) => (props.tasksInSelectedList.includes(key)))
@@ -22,7 +16,6 @@ function TaskList(props) {
               ),
             )
         }
-      </ScrollArea>
     </Wrapper>
   );
 }

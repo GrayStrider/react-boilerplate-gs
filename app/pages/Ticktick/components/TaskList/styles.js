@@ -2,10 +2,11 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   height: 80%;
-  overflow: overlay;
+  overflow: auto;
   
-  .scrollarea.area {
-    width: 100%;
-    height: 100%;
+  &::-webkit-scrollbar-thumb {
+    color: red;
+    background-color: red;
   }
+
 `;
