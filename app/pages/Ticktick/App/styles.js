@@ -33,6 +33,8 @@ export const Wrapper = styled.div`
   }
   
   .column.center {
+    display: flex;
+    flex-direction: column;
     width: 45% !important;
   }
   
@@ -43,6 +45,10 @@ export const Wrapper = styled.div`
   }
   
   .leftMenuButton {
+    display: none;
+  }
+  
+  .taskListHeader {
     display: none;
   }
 

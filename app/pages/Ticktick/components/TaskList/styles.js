@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  height: 80%;
+  height: 100%;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
 

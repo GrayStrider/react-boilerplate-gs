@@ -31,7 +31,7 @@ function TickTick(props) {
 
         <Grid.Column className='center'>
 
-          <span>
+          <span className='taskListHeader'>
             <Icon name='bars'
                   size='big'
                   onClick={() => openLeftMenu(!leftMenuOpened)}
