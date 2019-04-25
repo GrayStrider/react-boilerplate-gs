@@ -11,7 +11,6 @@ function InputNewTask(props) {
   return (
     <Wrapper>
       {/*Current list header, SHOULD DISPLAY TAGS DIFFERENTLY*/}
-      <Header>{props.categories[props.currentList].name}</Header>
 
       {/*sorting button*/}
 
@@ -28,7 +27,8 @@ function InputNewTask(props) {
 }
 
 InputNewTask.propTypes = {
-  defaultState: PropTypes.object,
+  categories: PropTypes.object,
+  currentList: PropTypes.string
 };
 
 const mapStateToProps = state => ({
@@ -37,7 +37,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  defaultAction: (index) => dispatch(defaultAction(index)),
+  // defaultAction: (index) => dispatch(defaultAction(index)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(InputNewTask);

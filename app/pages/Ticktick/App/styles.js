@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-   width: 100%;
+  width: 100%;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
    
   .column.right {
     width: 30% !important;
@@ -13,14 +17,25 @@ export const Wrapper = styled.div`
   
   .column.left {
     width: 25% !important;
+    z-index: 9999;
+    background: black;
+  }
+  
+  .leftMenuButton {
+    display: none;
   }
 
   @media screen and (max-width: 40em) {
   
+  .leftMenuButton {
+    display: inline;
+  }
+  
     .column {
       &.left {
         position: fixed !important;
-        left: -25%;
+        left: ${props => props.menuOpened ? 0 : '-40%'};
+        width: 40% !important;
 
       }
       
@@ -33,13 +48,27 @@ export const Wrapper = styled.div`
       }
     }
   }
-
-
-  background-color: black;
+    @media screen and (max-width: 30em) {
   
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+    .column {
+      &.left {
+        width: 60% !important;
+        left: ${props => props.menuOpened ? 0 : '-60%'};
+
+      }
+      
+      &.center {
+         width: 100% !important;
+      }
+      
+      &.right {
+          width: 30% !important;
+          position: fixed !important;
+          right: -30%;
+      }
+    }
+  }
+  
   
   .left .menu {
     display: flex !important;
