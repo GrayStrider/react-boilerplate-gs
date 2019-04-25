@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.span`
-  padding: 1em 1em 0 1em;
+  padding: 1em 1em 0.5em 1em;
   
   .input input {
     background: black;
