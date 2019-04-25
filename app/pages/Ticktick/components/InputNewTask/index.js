@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Input } from 'semantic-ui-react';
+import { Icon, Input } from 'semantic-ui-react';
 import { Wrapper } from './styles';
+import { InputButtonBar } from './inputButtonBar';
 //---
 
 function InputNewTask(props) {
@@ -19,9 +20,13 @@ function InputNewTask(props) {
       {/*FORM, input box*/}
       {/*TODO track cusror position and display ustom ui for tag selection*/}
       <Input
-        size='small'
         placeholder={placeholder}
         fluid/>
+      <InputButtonBar>
+        <Icon name='calendar alternate outline'/>
+        <Icon name='exclamation circle'/>
+        <Icon name='folder outline'/>
+      </InputButtonBar>
     </Wrapper>
   );
 }
