@@ -2,16 +2,17 @@ import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Icon, Input, Popup } from 'semantic-ui-react';
+import onClickOutside from 'react-onclickoutside';
 import { Wrapper } from './styles';
 import { InputButtonBar } from './inputButtonBar';
 
-const createReactClass = require('create-react-class');
-const enhanceWithClickOutside = require('react-click-outside');
 
 function InputNewTask(props) {
   const placeholder = `Add new task in ${props.categories[props.currentList].name}`;
 
   const [buttonBarActive, toggleButtonBar] = useState(false);
+  const toggle = () => toggleButtonBar(!buttonBarActive);
+  InputNewTask.handleClickOutside = () => toggleButtonBar(false);
 
 
   return (
@@ -68,4 +69,11 @@ const mapDispatchToProps = dispatch => ({
   // defaultAction: (index) => dispatch(defaultAction(index)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(InputNewTask);
+const clickOutsideConfig = {
+  handleClickOutside: () => InputNewTask.handleClickOutside
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)
+(
+  onClickOutside(InputNewTask, clickOutsideConfig)
+);

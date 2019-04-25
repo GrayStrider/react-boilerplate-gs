@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Grid, Header, Icon, Image } from 'semantic-ui-react';
+import { Grid, Icon, Image } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Wrapper } from './styles';
