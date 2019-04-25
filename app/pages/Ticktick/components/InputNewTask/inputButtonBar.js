@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const InputButtonBar = styled.span`
-  display: flex;
+  display: ${props => props.active ? 'flex' : 'none'};
   position: relative;
   float: right;
   top: -27px;

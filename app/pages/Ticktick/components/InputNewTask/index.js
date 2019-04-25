@@ -1,7 +1,7 @@
-import React, {createRef} from 'react';
+import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Icon, Input } from 'semantic-ui-react';
+import { Icon, Input, Popup } from 'semantic-ui-react';
 import { Wrapper } from './styles';
 import { InputButtonBar } from './inputButtonBar';
 //---
@@ -9,10 +9,9 @@ import { InputButtonBar } from './inputButtonBar';
 function InputNewTask(props) {
   const placeholder = `Add new task in ${props.categories[props.currentList].name}`;
 
-  const inputRef = createRef()
+  const [buttonBarActive, toggleButtonBar] = useState(false);
 
   const handleClick = (e) => {
-    inputRef.current.focus()
     e.preventDefault();
     e.stopPropagation();
     window.alert('click!');
@@ -29,15 +28,29 @@ function InputNewTask(props) {
 
       {/*FORM, input box*/}
       {/*TODO track cusror position and display ustom ui for tag selection*/}
-      <Input
-        ref={inputRef}
+      <div
+        role='presentation'
+        onClick={() => toggleButtonBar(true)}>
+        <Input
         placeholder={placeholder}
         fluid/>
+      </div>
       <InputButtonBar
+        active={buttonBarActive}
         className='inputButtonBar'>
-        <Icon
-          onClick={handleClick}
-          name='calendar alternate outline'/>
+
+        <Popup
+          trigger={
+            <Icon name='calendar alternate outline'/>
+          }
+          content="popup content"
+          on='click'
+          horizontalOffset={12}
+          verticalOffset={5}
+
+        />
+
+
         <Icon name='exclamation circle'/>
         <Icon name='folder outline'/>
       </InputButtonBar>
