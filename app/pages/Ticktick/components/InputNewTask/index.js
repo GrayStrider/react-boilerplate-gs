@@ -4,19 +4,15 @@ import PropTypes from 'prop-types';
 import { Icon, Input, Popup } from 'semantic-ui-react';
 import { Wrapper } from './styles';
 import { InputButtonBar } from './inputButtonBar';
-//---
+
+const createReactClass = require('create-react-class');
+const enhanceWithClickOutside = require('react-click-outside');
 
 function InputNewTask(props) {
   const placeholder = `Add new task in ${props.categories[props.currentList].name}`;
 
   const [buttonBarActive, toggleButtonBar] = useState(false);
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    window.alert('click!');
-    console.log('click');
-  }
 
   return (
     <Wrapper>

@@ -71,6 +71,7 @@
     "chance": "^1.0.18",
     "compression": "1.7.4",
     "connected-react-router": "6.4.0",
+    "create-react-class": "^15.6.3",
     "cross-env": "5.2.0",
     "express": "4.16.4",
     "fontfaceobserver": "2.1.0",
