@@ -10,13 +10,6 @@ import TaskDetails from '../components/TaskDetails';
 
 function TickTick(props) {
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    window.alert('click!');
-    console.log('click');
-  }
-
   const [leftMenuOpened, openLeftMenu] = useState(false);
 
   return (
@@ -37,7 +30,6 @@ function TickTick(props) {
         </Grid.Column>
 
         <Grid.Column
-          onClick={handleClick}
           className='center'>
 
           <span className='taskListHeader'>

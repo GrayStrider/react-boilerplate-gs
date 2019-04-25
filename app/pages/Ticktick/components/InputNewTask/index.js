@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createRef} from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Icon, Input } from 'semantic-ui-react';
@@ -9,7 +9,10 @@ import { InputButtonBar } from './inputButtonBar';
 function InputNewTask(props) {
   const placeholder = `Add new task in ${props.categories[props.currentList].name}`;
 
+  const inputRef = createRef()
+
   const handleClick = (e) => {
+    inputRef.current.focus()
     e.preventDefault();
     e.stopPropagation();
     window.alert('click!');
@@ -27,10 +30,10 @@ function InputNewTask(props) {
       {/*FORM, input box*/}
       {/*TODO track cusror position and display ustom ui for tag selection*/}
       <Input
+        ref={inputRef}
         placeholder={placeholder}
         fluid/>
       <InputButtonBar
-        onClick={handleClick}
         className='inputButtonBar'>
         <Icon
           onClick={handleClick}
