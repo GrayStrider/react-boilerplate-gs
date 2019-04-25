@@ -10,8 +10,8 @@ import TaskDetails from '../components/TaskDetails';
 function TickTick(props) {
   return (
     <Wrapper>
-      <Grid columns='equal'>
-        <Grid.Column className='left' width={4}>
+      <Grid columns={3}>
+        <Grid.Column className='left'>
           <Grid.Row className='account_pane'>
             <Image src='https://react.semantic-ui.com/images/wireframe/square-image.png' avatar/>
             <span>Username</span>
@@ -23,12 +23,12 @@ function TickTick(props) {
 
         </Grid.Column>
 
-        <Grid.Column className='center' width={6}>
+        <Grid.Column className='center'>
           <InputNewTask/>
           <TaskList/>
         </Grid.Column>
 
-        <Grid.Column className='right' width={6}>
+        <Grid.Column className='right'>
           <TaskDetails/>
         </Grid.Column>
 

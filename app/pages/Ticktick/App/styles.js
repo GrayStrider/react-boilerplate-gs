@@ -1,6 +1,40 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
+   width: 100%;
+   
+  .column.right {
+    width: 30% !important;
+  }
+  
+  .column.center {
+    width: 45% !important;
+  }
+  
+  .column.left {
+    width: 25% !important;
+  }
+
+  @media screen and (max-width: 40em) {
+  
+    .column {
+      &.left {
+        position: fixed !important;
+        left: -25%;
+
+      }
+      
+      &.center {
+      
+      }
+      
+      &.right {
+          width: 55% !important;
+      }
+    }
+  }
+
+
   background-color: black;
   
   display: flex;
