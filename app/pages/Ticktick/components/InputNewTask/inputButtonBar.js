@@ -1,24 +1,17 @@
 import styled from 'styled-components';
 
 export const InputButtonBar = styled.span`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: center;
-  
+  display: none;
   position: relative;
-  top: -100%;
   float: right;
-  padding-right: 0.5em;
-  padding-left: 0.5em;
-  
+  top: -27px;
+  margin-bottom: -27px;
+  padding: 0 0.5em 0 0.5em;
+  justify-content: space-between;
   width: 7em;
-    
-  height: 100%;
   
   .icon {
+    cursor: pointer;
   }
-  
   
 `

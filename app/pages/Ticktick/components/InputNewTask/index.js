@@ -9,6 +9,13 @@ import { InputButtonBar } from './inputButtonBar';
 function InputNewTask(props) {
   const placeholder = `Add new task in ${props.categories[props.currentList].name}`;
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    window.alert('click!');
+    console.log('click');
+  }
+
   return (
     <Wrapper>
       {/*Current list header, SHOULD DISPLAY TAGS DIFFERENTLY*/}
@@ -22,8 +29,12 @@ function InputNewTask(props) {
       <Input
         placeholder={placeholder}
         fluid/>
-      <InputButtonBar>
-        <Icon name='calendar alternate outline'/>
+      <InputButtonBar
+        onClick={handleClick}
+        className='inputButtonBar'>
+        <Icon
+          onClick={handleClick}
+          name='calendar alternate outline'/>
         <Icon name='exclamation circle'/>
         <Icon name='folder outline'/>
       </InputButtonBar>
