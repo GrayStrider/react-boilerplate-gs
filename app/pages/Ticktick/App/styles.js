@@ -33,8 +33,8 @@ export const Wrapper = styled.div`
   }
   
   .column.center {
-    display: flex;
-    flex-direction: column;
+    display: flex !important;
+    flex-direction: column !important;
     width: 45% !important;
   }
   
@@ -49,7 +49,6 @@ export const Wrapper = styled.div`
   }
   
   .taskListHeader {
-    display: none;
   }
 
   @media screen and (max-width: 40em) {
