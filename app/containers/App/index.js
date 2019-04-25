@@ -35,10 +35,10 @@ export default function App() {
         <meta name='description' content='A React.js Boilerplate application'/>
       </Helmet>
       <Switch>
-        <Route exact path="/" component={HomePage} />
+        <Route path='/' component={TickTick}/>
+        <Route exact path="/home" component={HomePage} />
         <Route path='/features' component={FeaturePage}/>
         <Route path='/playground' component={Playground}/>
-        <Route path='/ticktick' component={TickTick}/>
         <Route path='' component={NotFoundPage}/>
       </Switch>
       <GlobalStyle />

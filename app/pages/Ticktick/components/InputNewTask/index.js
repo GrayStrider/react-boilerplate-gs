@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Header, Input } from 'semantic-ui-react';
+import { Input } from 'semantic-ui-react';
 import { Wrapper } from './styles';
 //---
 
@@ -19,7 +19,7 @@ function InputNewTask(props) {
       {/*FORM, input box*/}
       {/*TODO track cusror position and display ustom ui for tag selection*/}
       <Input
-        inverted
+        size='small'
         placeholder={placeholder}
         fluid/>
     </Wrapper>
