@@ -11,12 +11,11 @@ function InputNewTask(props) {
   const placeholder = `Add new task in ${props.categories[props.currentList].name}`;
 
   const [buttonBarActive, toggleButtonBar] = useState(false);
-  const toggle = () => toggleButtonBar(!buttonBarActive);
   InputNewTask.handleClickOutside = () => toggleButtonBar(false);
 
 
   return (
-    <Wrapper>
+    <Wrapper buttonBarActive={buttonBarActive}>
       {/*Current list header, SHOULD DISPLAY TAGS DIFFERENTLY*/}
 
       {/*sorting button*/}
