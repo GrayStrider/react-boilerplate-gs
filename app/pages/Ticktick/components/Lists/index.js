@@ -24,7 +24,7 @@ function Lists(props) {
             active={key === selectedTab}
             onClick={() => selectTabAction(key)}>
 
-            {messages.key}
+            {messages[key]}
           </Menu.Item>
         ))
       }

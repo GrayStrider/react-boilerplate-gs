@@ -9,9 +9,12 @@ function TaskDetails(props) {
 
   return (
     <Wrapper>
-      {props.selectedTaskID ?
+      {selectedTaskID ?
         <div>
-          <span><Checkbox id={selectedTaskID}/> {tasks[selectedTaskID].taskContent}</span>
+          <span>
+            <Checkbox taskID= {selectedTaskID}/>
+            {tasks[selectedTaskID].taskContent}
+          </span>
           <hr/>
           Description: {tasks[selectedTaskID].description}
         </div>
@@ -22,14 +25,13 @@ function TaskDetails(props) {
 }
 
 TaskDetails.propTypes = {
-  selectedTaskID: PropTypes.object,
+  selectedTaskID: PropTypes.string,
   tasks: PropTypes.object
 };
 
 const mapStateToProps = state => ({
   tasks: state.ticktick.tasks,
-  selectedTaskID: state.ticktick.tasksList.selectedTaskID ?
-    state.ticktick.tasks[state.ticktick.tasksList.selectedTaskID] : null,
+  selectedTaskID: state.ticktick.tasksList.selectedTaskID
 });
 
 const mapDispatchToProps = dispatch => ({

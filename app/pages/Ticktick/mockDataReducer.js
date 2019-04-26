@@ -96,7 +96,7 @@ const globalReducer = (state = initialState, action) =>
         draft.tasksList.selectedTaskID = action.payload;
         break;
       case SELECT_TAB:
-        draft.selectedTab = action.payload;
+        draft.lists.selectedTab = action.payload;
         break;
       case SELECT_LIST:
         draft.lists.selectedList = action.payload
