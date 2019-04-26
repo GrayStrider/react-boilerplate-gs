@@ -14,29 +14,30 @@ function InputNewTask(props) {
   InputNewTask.handleClickOutside = () => toggleButtonBar(false);
 
 
+  const handleKeyPress = (event) => {
+    if(event.key === 'Enter'){
+      window.alert('enter press here! ')
+    }
+  }
+
   return (
     <Wrapper buttonBarActive={buttonBarActive}>
-      {/*Current list header, SHOULD DISPLAY TAGS DIFFERENTLY*/}
+      <div role='presentation'
+           onClick={() => toggleButtonBar(true)}>
 
-      {/*sorting button*/}
+        <Input placeholder={placeholder}
+               onKeyPress={handleKeyPress}
+               fluid/>
 
-      {/*{show completed button}*/}
-
-      {/*FORM, input box*/}
-      {/*TODO track cusror position and display ustom ui for tag selection*/}
-      <div
-        role='presentation'
-        onClick={() => toggleButtonBar(true)}>
-        <Input
-        placeholder={placeholder}
-        fluid/>
       </div>
-      <InputButtonBar
-        active={buttonBarActive}
-        className='inputButtonBar'>
 
-        <Popup
-          trigger={
+
+
+      <InputButtonBar active={buttonBarActive}
+                      className='inputButtonBar'>
+
+        <Popup trigger={
+
             <Icon name='calendar alternate outline'/>
           }
           content="popup content"
