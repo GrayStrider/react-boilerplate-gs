@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Icon, Input, Popup } from 'semantic-ui-react';
+import { Icon, Input, Popup, Segment } from 'semantic-ui-react';
 import onClickOutside from 'react-onclickoutside';
 import { Wrapper } from './styles';
 import { InputButtonBar } from './inputButtonBar';
@@ -20,7 +20,10 @@ function InputNewTask(props) {
 
   return (
     <Wrapper buttonBarActive={buttonBarActive}>
-      <div dangerouslySetInnerHTML={{__html: inputValue}}/>
+
+      <div contentEditable onInput={(value) => changeValue(value)}>
+        {inputValue}
+      </div>
 
       <div role='presentation' onClick={() => toggleButtonBar(true)}>
 
