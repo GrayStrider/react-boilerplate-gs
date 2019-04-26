@@ -6,7 +6,13 @@ import { selectTask } from './actions';
 import Checkbox from '../Checkbox';
 
 function Task(props) {
-  const {taskID, taskContent, selectTaskAction, taskIsSelected} = props
+  const {
+    taskID,
+    taskContent,
+    selectTaskAction,
+    taskIsSelected,
+  } = props;
+
   return (
     <Wrapper onClick={() => selectTaskAction(taskID)}
              taskIsSelected={taskIsSelected}>
@@ -20,17 +26,17 @@ function Task(props) {
 Task.propTypes = {
   taskID: PropTypes.string,
   taskContent: PropTypes.string,
+  taskIsSelected: PropTypes.bool,
   selectTaskAction: PropTypes.func,
-  taskIsSelected: PropTypes.bool
-}
+};
 
 const mapStateToProps = (state, ownProps) => ({
-  taskContent: state.ticktick.data.tasks[ownProps.taskID].taskContent,
-  taskIsSelected: state.ticktick.tasksList.selectedTask === ownProps.taskID,
+  taskContent: state.ticktick.tasks[ownProps.taskID].taskContent,
+  taskIsSelected: state.ticktick.tasksList.selectedTaskID === ownProps.taskID,
 });
 
 const mapDispatchToProps = dispatch => ({
-  selectTaskAction: (index) => dispatch(selectTask(index)),
+  selectTaskAction: (taskID) => dispatch(selectTask(taskID)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Task);

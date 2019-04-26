@@ -4,7 +4,7 @@ import { ADD_TASK } from '../InputNewTask/actions';
 
 
 export const initialState = {
-  selectedTask: null
+  selectedTaskID: null
 }
 
 /* eslint-disable default-case, no-param-reassign */
@@ -12,10 +12,10 @@ const taskListReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case SELECT_TASK:
-        draft.selectedTask = action.payload;
+        draft.selectedTaskID = action.payload;
         break;
       case ADD_TASK:
-        draft.selectedTask = action.payload.guid
+        draft.selectedTaskID = action.payload.guid
     }
   });
 

@@ -4,7 +4,7 @@ import { SELECT_TASK, TOGGLE_DONE } from './components/Task/actions';
 import { ADD_TASK } from './components/InputNewTask/actions';
 import { SELECT_LIST, SELECT_TAB } from './components/Lists/actions';
 const chance = new Chance(Math.random);
-const MOCK_TASKS_AMOUNT = 100;
+const MOCK_TASKS_AMOUNT = 1000;
 
 const tasks = {};
 for (let i = 0; i < MOCK_TASKS_AMOUNT; i += 1) {
@@ -69,7 +69,7 @@ const initialState = {
   lists,
   insertableLists,
   tasksList: {
-    selectedTask: null,
+    selectedTaskID: null,
   },
 };
 
@@ -79,7 +79,7 @@ const globalReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case ADD_TASK:
-        draft.tasksList.selectedTask = action.payload.guid;
+        draft.tasksList.selectedTaskID = action.payload.guid;
         draft.tasks[action.payload.guid] = {
           taskContent: action.payload.taskContent,
           description: '',
@@ -93,7 +93,7 @@ const globalReducer = (state = initialState, action) =>
         break;
 
       case SELECT_TASK:
-        draft.tasksList.selectedTask = action.payload;
+        draft.tasksList.selectedTaskID = action.payload;
         break;
       case SELECT_TAB:
         draft.selectedTab = action.payload;

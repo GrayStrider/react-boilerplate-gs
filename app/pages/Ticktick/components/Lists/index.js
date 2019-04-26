@@ -42,9 +42,9 @@ function Lists(props) {
     </Menu>
   return (
     <Wrapper>
-      <Tabs/>
+      {Tabs}
       <Grid.Row className='lists_and_filters'>
-        <InsertableLists/>
+        {InsertableLists}
       </Grid.Row>
 
     </Wrapper>

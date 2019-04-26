@@ -5,29 +5,31 @@ import { Wrapper } from './styles';
 import Checkbox from '../Checkbox';
 
 function TaskDetails(props) {
+  const { selectedTaskID, tasks } = props;
+
   return (
     <Wrapper>
-      {props.details ?
-
-      <div>
-        <span><Checkbox id={props.id}/> {props.details.taskContent}</span>
-      <hr/>
-           Description: {props.details.description}
-      </div> : 'Please, select a task from the list.'
+      {props.selectedTaskID ?
+        <div>
+          <span><Checkbox id={selectedTaskID}/> {tasks[selectedTaskID].taskContent}</span>
+          <hr/>
+          Description: {tasks[selectedTaskID].description}
+        </div>
+        : 'Please, select a task from the list.'
       }
     </Wrapper>
   );
 }
 
 TaskDetails.propTypes = {
-  details: PropTypes.object,
-  id: PropTypes.string
-}
+  selectedTaskID: PropTypes.object,
+  tasks: PropTypes.object
+};
 
 const mapStateToProps = state => ({
-  details: state.ticktick.tasksList.selectedTask ?
-  state.ticktick.data.tasks[state.ticktick.tasksList.selectedTask] : null,
-  taskID: state.ticktick.tasksList.selectedTask
+  tasks: state.ticktick.tasks,
+  selectedTaskID: state.ticktick.tasksList.selectedTaskID ?
+    state.ticktick.tasks[state.ticktick.tasksList.selectedTaskID] : null,
 });
 
 const mapDispatchToProps = dispatch => ({

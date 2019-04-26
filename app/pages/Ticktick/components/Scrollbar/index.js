@@ -15,7 +15,7 @@ export default class Scrollbar extends Component {
   static renderThumb({ style, ...props }) {
     const thumbStyle = {
       backgroundColor: `gray`,
-      'border-radius': '3px'
+      borderRadius: '3px'
     };
     return (
       <div
