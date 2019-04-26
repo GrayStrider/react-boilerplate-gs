@@ -1,10 +1,11 @@
 import produce from 'immer';
 import { Chance } from 'chance';
 import { TOGGLE_DONE } from './components/Task/actions';
+import { ADD_TASK } from './components/InputNewTask/actions';
 
 const chance = new Chance(Math.random);
 
-const MOCK_TASKS_AMOUNT = 1000;
+const MOCK_TASKS_AMOUNT = 100;
 
 
 const tasks = {}
@@ -85,6 +86,15 @@ const dataReducer = (state = initialState, action) =>
       case TOGGLE_DONE:
         draft.tasks[action.payload].completed = !draft.tasks[action.payload].completed
         break;
+
+      case ADD_TASK:
+        draft.tasks[chance.guid()] = {
+          content: action.payload.content,
+          description: '',
+          priority: action.payload.priority,
+          completed: false
+        }
+        break
     }
   });
 

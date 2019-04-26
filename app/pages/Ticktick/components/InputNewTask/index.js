@@ -5,6 +5,7 @@ import { Icon, Input, Popup } from 'semantic-ui-react';
 import onClickOutside from 'react-onclickoutside';
 import { Wrapper } from './styles';
 import { InputButtonBar } from './inputButtonBar';
+import { addTask } from './actions';
 
 
 function InputNewTask(props) {
@@ -16,20 +17,16 @@ function InputNewTask(props) {
 
   const handleKeyDown = (event) => {
     if(event.key === 'Enter'){
-      window.alert(`Submitted: ${inputValue}`)
+      props.addTask({content: inputValue, priority: 3, group: props.currentList})
       changeInputValue('')
+    }
+
+    if (event.keyCode === 51) {
+      window.alert(`#`)
     }
   }
 
   const handleChange = (event) => {
-    console.log(event.target.value);
-    console.log(event.target.value.substr(-1));
-    const trimmed = event.target.value.substr(-1)
-    if (trimmed === '#') {
-      console.log('trimmed');
-      changeInputValue(`${event.target.value}tag_detected!`)
-      return
-    }
     changeInputValue(event.target.value)
   }
 
@@ -72,7 +69,8 @@ function InputNewTask(props) {
 
 InputNewTask.propTypes = {
   categories: PropTypes.object,
-  currentList: PropTypes.string
+  currentList: PropTypes.string,
+  addTask: PropTypes.func
 };
 
 const mapStateToProps = state => ({
@@ -81,7 +79,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  // defaultAction: (index) => dispatch(defaultAction(index)),
+  addTask: ({content, priority, group}) => dispatch(addTask({content, priority, group})),
 });
 
 const clickOutsideConfig = {

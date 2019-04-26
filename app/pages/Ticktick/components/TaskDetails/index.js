@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { defaultAction } from './actions';
 import { Wrapper } from './styles';
 import Checkbox from '../Checkbox';
 
@@ -32,7 +31,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  defaultAction: (index) => dispatch(defaultAction(index)),
+  // defaultAction: (index) => dispatch(defaultAction(index)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TaskDetails);

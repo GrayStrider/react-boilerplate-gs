@@ -1,8 +1,8 @@
-export const DEFAULT_ACTION = 'DEFAULT_ACTION';
+export const ADD_TASK = 'ADD_TASK';
 
-export function defaultAction(payload) {
+export function addTask(payload) {
   return {
-    type: DEFAULT_ACTION,
+    type: ADD_TASK,
     payload,
   };
 }
