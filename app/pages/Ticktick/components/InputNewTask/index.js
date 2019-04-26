@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Icon, Input, Popup } from 'semantic-ui-react';
@@ -16,25 +16,23 @@ function InputNewTask(props) {
   const [inputValue, changeInputValue] = useState('');
 
   const handleKeyDown = (event) => {
-    if(event.key === 'Enter'){
+    if (event.key === 'Enter') {
       const params = {
         taskContent: inputValue,
         priority: 3,
-        selectedList: props.selectedList
-      }
-
-      props.addTask(params)
-      changeInputValue('')
+        selectedList: props.selectedList,
+      };
+      props.addTask(params);
+      changeInputValue('');
     }
-
     if (event.keyCode === 51) {
-      window.alert(`#`)
+      window.alert(`#`);
     }
-  }
+  };
 
   const handleChange = (event) => {
-    changeInputValue(event.target.value)
-  }
+    changeInputValue(event.target.value);
+  };
 
   return (
     <Wrapper buttonBarActive={buttonBarActive}>
@@ -50,18 +48,17 @@ function InputNewTask(props) {
       </div>
 
 
-
       <InputButtonBar active={buttonBarActive}
                       className='inputButtonBar'>
 
         <Popup trigger={
 
-            <Icon name='calendar alternate outline'/>
-          }
-          content="popup content"
-          on='click'
-          horizontalOffset={12}
-          verticalOffset={5}
+          <Icon name='calendar alternate outline'/>
+        }
+               content='popup content'
+               on='click'
+               horizontalOffset={12}
+               verticalOffset={5}
 
         />
 
@@ -74,25 +71,18 @@ function InputNewTask(props) {
 }
 
 InputNewTask.propTypes = {
-  insertableLists: PropTypes.object,
   selectedList: PropTypes.object,
-  addTask: PropTypes.func
+  addTask: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
   selectedList: state.ticktick.lists.selectedList,
-  insertableLists: state.ticktick.insertableLists
 });
 
 const mapDispatchToProps = dispatch => ({
-  addTask: (params) => dispatch(addTask(params))
+  addTask: (params) => dispatch(addTask(params)),
 });
 
-const clickOutsideConfig = {
-  handleClickOutside: () => InputNewTask.handleClickOutside
-}
-
+const clickOutsideConfig = { handleClickOutside: () => InputNewTask.handleClickOutside };
 export default connect(mapStateToProps, mapDispatchToProps)
-(
-  onClickOutside(InputNewTask, clickOutsideConfig)
-);
+(onClickOutside(InputNewTask, clickOutsideConfig));

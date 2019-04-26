@@ -75,6 +75,8 @@ module.exports = {
     'require-yield': 0,
     'react/no-array-index-key': 0,
     'spaced-comment': 0,
+    'object-shorthand': 0,
+    'no-param-reassign': 0
   },
   settings: {
     'import/resolver': {

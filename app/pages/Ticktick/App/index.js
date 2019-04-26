@@ -9,7 +9,7 @@ import InputNewTask from '../components/InputNewTask';
 import TaskDetails from '../components/TaskDetails';
 
 function TickTick(props) {
-
+  const {selectedList} = props
   const [leftMenuOpened, openLeftMenu] = useState(false);
 
   return (
@@ -37,7 +37,7 @@ function TickTick(props) {
                   size='big'
                   onClick={() => openLeftMenu(!leftMenuOpened)}
                   className='leftMenuButton'/>
-            {props.selectedList.name}
+            {selectedList.name}
           </span>
 
           <InputNewTask/>
