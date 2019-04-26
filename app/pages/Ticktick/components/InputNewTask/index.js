@@ -15,13 +15,20 @@ function InputNewTask(props) {
 
   const [inputValue, changeInputValue] = useState('')
   const handleKeyPress = (event) => {
+    if(event.key === 'Enter' || event.key === 'Backspace') {return}
+    changeInputValue(inputValue + event.key)
+  }
+
+  const handleKeyDown = (event) => {
     if(event.key === 'Enter'){
       window.alert(`Submitted: ${inputValue}`)
       changeInputValue('')
-      return
     }
 
-    changeInputValue(inputValue + event.key)
+    if(event.key === "Backspace"){
+      changeInputValue(inputValue.slice(0, -1))
+    }
+
   }
 
   return (
@@ -32,6 +39,7 @@ function InputNewTask(props) {
         <Input placeholder={placeholder}
                value={inputValue}
                onKeyPress={handleKeyPress}
+               onKeyDown={handleKeyDown}
                fluid/>
 
       </div>
