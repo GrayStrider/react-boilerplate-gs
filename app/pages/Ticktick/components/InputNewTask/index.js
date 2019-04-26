@@ -13,11 +13,15 @@ function InputNewTask(props) {
   const [buttonBarActive, toggleButtonBar] = useState(false);
   InputNewTask.handleClickOutside = () => toggleButtonBar(false);
 
-
+  const [inputValue, changeInputValue] = useState('')
   const handleKeyPress = (event) => {
     if(event.key === 'Enter'){
-      window.alert('enter press here! ')
+      window.alert(`Submitted: ${inputValue}`)
+      changeInputValue('')
+      return
     }
+
+    changeInputValue(inputValue + event.key)
   }
 
   return (
@@ -26,6 +30,7 @@ function InputNewTask(props) {
            onClick={() => toggleButtonBar(true)}>
 
         <Input placeholder={placeholder}
+               value={inputValue}
                onKeyPress={handleKeyPress}
                fluid/>
 
