@@ -9,26 +9,28 @@ import { InputButtonBar } from './inputButtonBar';
 
 function InputNewTask(props) {
   const placeholder = `Add new task in ${props.categories[props.currentList].name}`;
-
-  const [buttonBarActive, toggleButtonBar] = useState(false);
   InputNewTask.handleClickOutside = () => toggleButtonBar(false);
 
-  const [inputValue, changeInputValue] = useState('')
-  const handleKeyPress = (event) => {
-    if(event.key === 'Enter' || event.key === 'Backspace') {return}
-    changeInputValue(inputValue + event.key)
-  }
+  const [buttonBarActive, toggleButtonBar] = useState(false);
+  const [inputValue, changeInputValue] = useState('');
 
   const handleKeyDown = (event) => {
     if(event.key === 'Enter'){
       window.alert(`Submitted: ${inputValue}`)
       changeInputValue('')
     }
+  }
 
-    if(event.key === "Backspace"){
-      changeInputValue(inputValue.slice(0, -1))
+  const handleChange = (event) => {
+    console.log(event.target.value);
+    console.log(event.target.value.substr(-1));
+    const trimmed = event.target.value.substr(-1)
+    if (trimmed === '#') {
+      console.log('trimmed');
+      changeInputValue(`${event.target.value}tag_detected!`)
+      return
     }
-
+    changeInputValue(event.target.value)
   }
 
   return (
@@ -38,8 +40,8 @@ function InputNewTask(props) {
 
         <Input placeholder={placeholder}
                value={inputValue}
-               onKeyPress={handleKeyPress}
                onKeyDown={handleKeyDown}
+               onChange={handleChange}
                fluid/>
 
       </div>
