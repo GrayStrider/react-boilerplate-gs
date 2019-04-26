@@ -11,45 +11,36 @@ function InputNewTask(props) {
   const placeholder = `Add new task in ${props.categories[props.currentList].name}`;
 
   const [buttonBarActive, toggleButtonBar] = useState(false);
+  const [inputValue, changeValue] = useState('');
+
   InputNewTask.handleClickOutside = () => toggleButtonBar(false);
+
+
 
 
   return (
     <Wrapper buttonBarActive={buttonBarActive}>
-      {/*Current list header, SHOULD DISPLAY TAGS DIFFERENTLY*/}
+      <div dangerouslySetInnerHTML={{__html: inputValue}}/>
 
-      {/*sorting button*/}
+      <div role='presentation' onClick={() => toggleButtonBar(true)}>
 
-      {/*{show completed button}*/}
+        <Input placeholder={placeholder}
+               value={inputValue}
+               onChange={(e, {value}) => changeValue(value)}
+               fluid/>
 
-      {/*FORM, input box*/}
-      {/*TODO track cusror position and display ustom ui for tag selection*/}
-      <div
-        role='presentation'
-        onClick={() => toggleButtonBar(true)}>
-        <Input
-        placeholder={placeholder}
-        fluid/>
       </div>
-      <InputButtonBar
-        active={buttonBarActive}
-        className='inputButtonBar'>
 
-        <Popup
-          trigger={
-            <Icon name='calendar alternate outline'/>
-          }
+      <InputButtonBar active={buttonBarActive} className='inputButtonBar'>
+
+        <Popup trigger={<Icon name='calendar alternate outline'/>}
           content="popup content"
-          on='click'
-          horizontalOffset={12}
-          verticalOffset={5}
-
-        />
-
+          on='click' horizontalOffset={12} verticalOffset={5}/>
 
         <Icon name='exclamation circle'/>
         <Icon name='folder outline'/>
       </InputButtonBar>
+
     </Wrapper>
   );
 }
