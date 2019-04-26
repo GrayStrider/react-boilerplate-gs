@@ -1,5 +1,6 @@
 import produce from 'immer';
 import { SELECT_TASK } from '../Task/actions';
+import { ADD_TASK } from '../InputNewTask/actions';
 
 
 export const initialState = {
@@ -13,6 +14,8 @@ const taskListReducer = (state = initialState, action) =>
       case SELECT_TASK:
         draft.selectedTask = action.payload;
         break;
+      case ADD_TASK:
+        draft.selectedTask = action.payload.guid
     }
   });
 

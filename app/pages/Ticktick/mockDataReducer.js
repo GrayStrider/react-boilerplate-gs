@@ -80,14 +80,14 @@ const dataReducer = (state = initialState, action) =>
         break;
 
       case ADD_TASK: {
-        const guid = chance.guid()
-        draft.tasks[guid] = {
+        draft.tasks[action.payload.guid] = {
           content: action.payload.content,
           description: '',
           priority: action.payload.priority,
           completed: false
         }
-        draft[action.payload.currentList.type][action.payload.currentList.id].tasks.push(guid)
+        draft[action.payload.currentList.type][action.payload.currentList.id].tasks.push(action.payload.guid)
+
         break
       }
     }
