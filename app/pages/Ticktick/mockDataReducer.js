@@ -11,7 +11,8 @@ generateMockData([tasks, tags, groups])
 
 
 const custom = {
-  custom : {
+  0 : {
+    listID: 0,
     name: 'Today & overdue',
     type: 'custom',
     tasks: [],
@@ -34,7 +35,7 @@ export const menuCategories = Object.keys(insertableLists);
 const lists = {
   predefinedGroups,
   selectedTab: menuCategories[0],
-  selectedList: custom.custom
+  selectedList: custom[0]
 };
 
 const initialState = {
@@ -60,9 +61,12 @@ const globalReducer = (state = initialState, action) =>
           priority: action.payload.priority,
           completed: false,
         };
-        // insert taskID into active list
+        // insert taskID into active list index
         draft.lists.selectedList.tasks.push(guid);
+        // insert taskID into active list
+        draft.insertableLists[action.payload.selectedList.type][action.payload.selectedList.listID].tasks.push(guid)
         // select new task after input
+        // TODO: remove tasks array from selected list
         draft.tasksList.selectedTaskID = guid;
         break;
       }
