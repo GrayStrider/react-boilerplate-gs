@@ -7,6 +7,7 @@ import Lists from '../components/Lists';
 import TaskList from '../components/TaskList';
 import InputNewTask from '../components/InputNewTask';
 import TaskDetails from '../components/TaskDetails';
+import InputNewTaskDropdownTags from '../components/InputNewTaskDropdownTags';
 
 function TickTick(props) {
 
@@ -46,6 +47,7 @@ function TickTick(props) {
 
         <Grid.Column className='right'>
           <TaskDetails/>
+          <InputNewTaskDropdownTags/>
         </Grid.Column>
 
       </Grid>
