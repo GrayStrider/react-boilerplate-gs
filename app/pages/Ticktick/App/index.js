@@ -60,8 +60,12 @@ TickTick.propTypes = {
 
 const mapStateToProps = state => ({
   placeholder: state.ticktick.placeholder,
-  currentList: state.ticktick.lists.selectedList,
-  categories: state.ticktick.data.spreadedCategories,
+  currentList: state.ticktick.lists.selectedList.id,
+  categories: {
+    ...state.ticktick.data.groups,
+    ...state.ticktick.data.tags,
+    ...state.ticktick.data.custom
+  }
 });
 
 const mapDispatchToProps = dispatch => ({

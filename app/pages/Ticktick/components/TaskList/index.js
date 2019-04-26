@@ -11,9 +11,9 @@ function TaskList(props) {
       <Scrollbar style={{height: '100%' }} autoHide>
         {
           props.tasksKeys
-            .filter((key) => (props.tasksInSelectedList.includes(key)))
+            .filter((key) => (props.categories.includes(key)))
             .map((taskID) => (
-                <Task id={taskID}/>
+                <Task id={taskID} key={taskID}/>
               ),
             )
         }
@@ -24,12 +24,16 @@ function TaskList(props) {
 
 TaskList.propTypes = {
   tasksKeys: PropTypes.array,
-  tasksInSelectedList: PropTypes.array,
+  categories: PropTypes.array,
 };
 
 const mapStateToProps = (state) => ({
   tasksKeys: Object.keys(state.ticktick.data.tasks),
-  tasksInSelectedList: state.ticktick.data.spreadedCategories[state.ticktick.lists.selectedList].tasks,
+  categories: {
+    ...state.ticktick.data.groups,
+    ...state.ticktick.data.tags,
+    ...state.ticktick.data.custom
+  }[state.ticktick.lists.selectedList.id].tasks,
   selectedTask: state.ticktick.tasksList.selectedTask,
 });
 

@@ -33,8 +33,11 @@ function Lists(props) {
 
               <Menu.Item
                 key={key}
-                onClick={() => props.selectList(key)}
-                active={key === props.selectedList}>
+                onClick={() => props.selectList({
+                  type: props.data[props.selectedTab][key].type,
+                  id: key
+                })}
+                active={key === props.selectedList.id}>
                 <span><Icon name='list'/>{props.data[props.selectedTab][key].name}</span>
               </Menu.Item>
             ))}
@@ -47,7 +50,7 @@ function Lists(props) {
 
 Lists.propTypes = {
   selectedTab: PropTypes.string,
-  selectedList: PropTypes.string,
+  selectedList: PropTypes.object,
 
   selectTab: PropTypes.func,
   selectList: PropTypes.func,

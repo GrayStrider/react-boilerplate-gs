@@ -4,7 +4,7 @@ import { groups } from '../../mockDataReducer';
 
 export const initialState = {
   selectedTab: 'groups',
-  selectedList: Object.keys(groups)[0]
+  selectedList: {id: Object.keys(groups)[0], type: groups[Object.keys(groups)[0]].type}
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -15,7 +15,8 @@ const listsReducer = (state = initialState, action) =>
           draft.selectedTab = action.payload;
           break;
         case SELECT_LIST:
-          draft.selectedList = action.payload;
+          draft.selectedList.id = action.payload.id;
+          draft.selectedList.type = action.payload.type;
           break;
 
       }
