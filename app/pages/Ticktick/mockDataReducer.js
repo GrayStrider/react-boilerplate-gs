@@ -87,14 +87,17 @@ const dataReducer = (state = initialState, action) =>
         draft.tasks[action.payload].completed = !draft.tasks[action.payload].completed
         break;
 
-      case ADD_TASK:
-        draft.tasks[chance.guid()] = {
+      case ADD_TASK: {
+        const guid = chance.guid()
+        draft.tasks[guid] = {
           content: action.payload.content,
           description: '',
           priority: action.payload.priority,
           completed: false
         }
+        draft.groups[action.payload.group].tasks.push(guid)
         break
+      }
     }
   });
 
