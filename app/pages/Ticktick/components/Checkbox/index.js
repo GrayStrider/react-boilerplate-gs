@@ -12,7 +12,7 @@ function Checkbox(props) {
       priority={props.priority}>
       <CheckboxSemantic
         checked={props.completed}
-        onClick={() => props.toggleDone(props.id)}
+        onClick={() => props.toggleDone(props.taskID)}
       />
     </Wrapper>
   );
@@ -21,13 +21,13 @@ function Checkbox(props) {
 Checkbox.propTypes = {
   completed: PropTypes.bool,
   toggleDone: PropTypes.func,
-  id: PropTypes.string,
+  taskID: PropTypes.string,
   priority: PropTypes.number,
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  completed: state.ticktick.data.tasks[ownProps.id].completed,
-  priority: state.ticktick.data.tasks[ownProps.id].priority,
+  completed: state.ticktick.tasks[ownProps.taskID].completed,
+  priority: state.ticktick.tasks[ownProps.taskID].priority,
 });
 
 const mapDispatchToProps = dispatch => ({

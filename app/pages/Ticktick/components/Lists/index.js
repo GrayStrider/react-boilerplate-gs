@@ -5,43 +5,46 @@ import { Icon, Menu, Grid } from 'semantic-ui-react';
 import { Wrapper } from './styles';
 import { selectList, selectTab } from './actions';
 import { menuCategories } from '../../mockDataReducer';
+import messages from './messages';
 
 function Lists(props) {
+  const {
+    selectedTab,
+    selectedList,
+    insertableLists,
+    selectTabAction,
+    selectListAction
+  } = props
+  const Tabs =
+    <Menu pointing secondary inverted>
+      {
+        menuCategories.map((key) => (
+          <Menu.Item
+            key={key}
+            active={key === selectedTab}
+            onClick={() => selectTabAction(key)}>
+
+            {messages.key}
+          </Menu.Item>
+        ))
+      }
+    </Menu>;
+  const InsertableLists =
+    <Menu vertical inverted fluid>
+      {Object.keys(insertableLists[selectedTab]).map((key) => (
+        <Menu.Item
+          key={key}
+          active={insertableLists[selectedTab][key] === selectedList}
+          onClick={() => selectListAction(insertableLists[selectedTab][key])}>
+          <span><Icon name='list'/>{insertableLists[selectedTab][key].name}</span>
+        </Menu.Item>
+      ))}
+    </Menu>
   return (
     <Wrapper>
-      <Menu
-        pointing secondary inverted>
-
-        {Object.keys(menuCategories).map(
-          (key) => (
-
-            <Menu.Item
-              key={key}
-              active={key === props.selectedTab}
-              onClick={() => props.selectTab(key)}
-            >
-              {key}
-            </Menu.Item>
-          ),
-        )}
-      </Menu>
-
-      <Grid.Row
-        className='lists_and_filters'>
-        <Menu vertical inverted fluid>
-          {Object.keys(props.data[props.selectedTab]).map((key) => (
-
-              <Menu.Item
-                key={key}
-                onClick={() => props.selectList({
-                  type: props.data[props.selectedTab][key].type,
-                  id: key
-                })}
-                active={key === props.selectedList.id}>
-                <span><Icon name='list'/>{props.data[props.selectedTab][key].name}</span>
-              </Menu.Item>
-            ))}
-        </Menu>
+      <Tabs/>
+      <Grid.Row className='lists_and_filters'>
+        <InsertableLists/>
       </Grid.Row>
 
     </Wrapper>
@@ -51,26 +54,21 @@ function Lists(props) {
 Lists.propTypes = {
   selectedTab: PropTypes.string,
   selectedList: PropTypes.object,
+  insertableLists: PropTypes.object,
 
-  selectTab: PropTypes.func,
-  selectList: PropTypes.func,
-
-  data: PropTypes.object
-}
+  selectTabAction: PropTypes.func,
+  selectListAction: PropTypes.func,
+};
 
 const mapStateToProps = state => ({
   selectedTab: state.ticktick.lists.selectedTab,
   selectedList: state.ticktick.lists.selectedList,
-
-  data: state.ticktick.data,
-  groups: state.ticktick.data.groups,
-  tags: state.ticktick.data.tags,
-  customLists: state.ticktick.data.customLists,
+  insertableLists: state.ticktick.insertableLists,
 });
 
 const mapDispatchToProps = dispatch => ({
-  selectTab: (index) => dispatch(selectTab(index)),
-  selectList: (index) => dispatch(selectList(index)),
+  selectTabAction: (index) => dispatch(selectTab(index)),
+  selectListAction: (index) => dispatch(selectList(index)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Lists);

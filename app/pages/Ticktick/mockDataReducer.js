@@ -1,96 +1,107 @@
 import produce from 'immer';
 import { Chance } from 'chance';
-import { TOGGLE_DONE } from './components/Task/actions';
+import { SELECT_TASK, TOGGLE_DONE } from './components/Task/actions';
 import { ADD_TASK } from './components/InputNewTask/actions';
-
+import { SELECT_LIST, SELECT_TAB } from './components/Lists/actions';
 const chance = new Chance(Math.random);
-
 const MOCK_TASKS_AMOUNT = 100;
 
-
-const tasks = {}
-for (let i=0; i<MOCK_TASKS_AMOUNT; i+=1) {
+const tasks = {};
+for (let i = 0; i < MOCK_TASKS_AMOUNT; i += 1) {
   tasks[chance.guid()] = {
-    content: chance.sentence({words: chance.integer({min: 2, max: 6})}),
-    description: chance.sentence({words: 10}),
-    priority: chance.integer({min: 0, max: 3}),
-    completed: chance.weighted([true, false], [1, 5])
+    taskContent: chance.sentence({ words: chance.integer({ min: 2, max: 6 }) }),
+    description: chance.sentence({ words: 10 }),
+    priority: chance.integer({ min: 0, max: 3 }),
+    completed: chance.weighted([true, false], [1, 5]),
 
-  }
+  };
 }
 
-const tags = {}
-for (let i=0; i<10; i+=1) {
+const tags = {};
+for (let i = 0; i < 10; i += 1) {
   tags[chance.guid()] = {
-    name: chance.word({length: chance.integer({min: 3, max: 10})}),
+    name: chance.word({ length: chance.integer({ min: 3, max: 10 }) }),
     type: 'tags',
-    tasks: chance.pickset(Object.keys(tasks), chance.integer({min: 1, max: MOCK_TASKS_AMOUNT / 20}))
-  }
+    tasks: chance.pickset(Object.keys(tasks), chance.integer({ min: 1, max: MOCK_TASKS_AMOUNT / 20 })),
+  };
 }
 
-export const groups = {}
-const randomTasksToDistribute = Object.keys(tasks)
-
-for (let i=0; i<4; i+=1) {
-    groups[chance.guid()] = {
-      name: chance.capitalize(chance.word({length: chance.integer({min: 3, max: 10})})),
-      type: 'groups',
-      tasks: randomTasksToDistribute.splice(0, chance.integer({min: 0, max: MOCK_TASKS_AMOUNT / 6}))
-    }
-  }
-
-
-
-const predefinedGroups = {
-  'inbox': {
-    tasks: ['3'],
-    displayed: true,
-  },
-
+const randomTasksToDistribute = Object.keys(tasks);
+export const groups = {};
+for (let i = 0; i < 4; i += 1) {
+  groups[chance.guid()] = {
+    name: chance.capitalize(chance.word({ length: chance.integer({ min: 3, max: 10 }) })),
+    type: 'groups',
+    tasks: randomTasksToDistribute.splice(0, chance.integer({ min: 0, max: MOCK_TASKS_AMOUNT / 6 })),
+  };
 }
+
 
 const custom = {
   '6': {
-    name: 'WIP',
+    name: 'Today & overdue',
     type: 'custom',
-    tasks: []
+    tasks: [],
+  },
+};
+const predefinedGroups = {
+  'inbox': {
+    tasks: [],
+    displayed: true,
   },
 }
 
-export const menuCategories = {
+const insertableLists = {
   groups,
   tags,
-  custom,
+  custom
+}
+export const menuCategories = Object.keys(insertableLists)
+
+const lists = {
+  predefinedGroups,
+  selectedTab: menuCategories[0],
+  selectedList: groups[Object.keys(groups)[0]]
 };
 
-export const initialState = {
+const initialState = {
   tasks,
-  predefinedGroups,
-  groups,
-  tags,
-  custom,
+  lists,
+  insertableLists,
+  tasksList: {
+    selectedTask: null,
+  },
 };
+
 
 /* eslint-disable default-case, no-param-reassign */
-const dataReducer = (state = initialState, action) =>
+const globalReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case TOGGLE_DONE:
-        draft.tasks[action.payload].completed = !draft.tasks[action.payload].completed
-        break;
-
-      case ADD_TASK: {
+      case ADD_TASK:
+        draft.tasksList.selectedTask = action.payload.guid;
         draft.tasks[action.payload.guid] = {
-          content: action.payload.content,
+          taskContent: action.payload.taskContent,
           description: '',
           priority: action.payload.priority,
-          completed: false
-        }
-        draft[action.payload.currentList.type][action.payload.currentList.id].tasks.push(action.payload.guid)
+          completed: false,
+        };
+        draft[action.payload.selectedList.type][action.payload.selectedList.id].tasks.push(action.payload.guid);
+        break;
+      case TOGGLE_DONE:
+        draft.tasks[action.payload].completed = !draft.tasks[action.payload].completed;
+        break;
 
-        break
-      }
+      case SELECT_TASK:
+        draft.tasksList.selectedTask = action.payload;
+        break;
+      case SELECT_TAB:
+        draft.selectedTab = action.payload;
+        break;
+      case SELECT_LIST:
+        draft.lists.selectedList = action.payload
+        break;
     }
   });
 
-export default dataReducer;
+export default globalReducer;

@@ -99,10 +99,10 @@ const extractFromFile = async filename => {
 
     for (const message of messages) {
       for (const locale of appLocales) {
-        const oldLocaleMapping = oldLocaleMappings[locale][message.id];
+        const oldLocaleMapping = oldLocaleMappings[locale][message.taskID];
         // Merge old translations into the babel extracted instances where react-intl is used
         const newMsg = locale === DEFAULT_LOCALE ? message.defaultMessage : '';
-        localeMappings[locale][message.id] = oldLocaleMapping || newMsg;
+        localeMappings[locale][message.taskID] = oldLocaleMapping || newMsg;
       }
     }
   } catch (error) {

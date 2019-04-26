@@ -13,7 +13,7 @@ function TaskList(props) {
           props.tasksKeys
             .filter((key) => (props.categories.includes(key)))
             .map((taskID) => (
-                <Task id={taskID} key={taskID}/>
+                <Task taskID={taskID} key={taskID}/>
               ),
             )
         }
@@ -29,11 +29,11 @@ TaskList.propTypes = {
 
 const mapStateToProps = (state) => ({
   tasksKeys: Object.keys(state.ticktick.data.tasks),
-  categories: {
+  insertableLists: {
     ...state.ticktick.data.groups,
     ...state.ticktick.data.tags,
     ...state.ticktick.data.custom
-  }[state.ticktick.lists.selectedList.id].tasks,
+  }[state.ticktick.lists.selectedList.taskID].tasks,
   selectedTask: state.ticktick.tasksList.selectedTask,
 });
 

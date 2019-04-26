@@ -23,7 +23,7 @@ describe('<ListItem />', () => {
     const {
       container: { firstChild },
     } = render(<ListItem id={id} />);
-    expect(firstChild.id).toEqual(id);
+    expect(firstChild.taskID).toEqual(id);
   });
 
   it('should not adopt an invalid attribute', () => {

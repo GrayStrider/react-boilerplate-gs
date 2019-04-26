@@ -19,7 +19,7 @@ describe('<Section />', () => {
   it('should adopt a valid attribute', () => {
     const id = 'test';
     const { container } = render(<Section id={id} />);
-    expect(container.firstChild.id).toEqual(id);
+    expect(container.firstChild.taskID).toEqual(id);
   });
 
   it('should not adopt an invalid attribute', () => {

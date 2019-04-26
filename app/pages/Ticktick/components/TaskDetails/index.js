@@ -10,7 +10,7 @@ function TaskDetails(props) {
       {props.details ?
 
       <div>
-        <span><Checkbox id={props.id}/> {props.details.content}</span>
+        <span><Checkbox id={props.id}/> {props.details.taskContent}</span>
       <hr/>
            Description: {props.details.description}
       </div> : 'Please, select a task from the list.'
@@ -27,7 +27,7 @@ TaskDetails.propTypes = {
 const mapStateToProps = state => ({
   details: state.ticktick.tasksList.selectedTask ?
   state.ticktick.data.tasks[state.ticktick.tasksList.selectedTask] : null,
-  id: state.ticktick.tasksList.selectedTask
+  taskID: state.ticktick.tasksList.selectedTask
 });
 
 const mapDispatchToProps = dispatch => ({

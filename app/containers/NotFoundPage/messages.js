@@ -9,7 +9,7 @@ export const scope = 'boilerplate.containers.NotFoundPage';
 
 export default defineMessages({
   header: {
-    id: `${scope}.header`,
+    taskID: `${scope}.header`,
     defaultMessage: 'Page not found.',
   },
 });

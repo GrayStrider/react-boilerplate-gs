@@ -9,15 +9,15 @@ export const scope = 'boilerplate.components.Header';
 
 export default defineMessages({
   home: {
-    id: `${scope}.home`,
+    taskID: `${scope}.home`,
     defaultMessage: 'Home',
   },
   features: {
-    id: `${scope}.features`,
+    taskID: `${scope}.features`,
     defaultMessage: 'Features',
   },
   playground: {
-    id: `${scope}.playground`,
+    taskID: `${scope}.playground`,
     defaultMessage: 'Playground',
   },
 });

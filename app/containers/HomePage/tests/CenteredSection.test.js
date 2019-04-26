@@ -25,7 +25,7 @@ describe('<CenteredSection />', () => {
     const {
       container: { firstChild },
     } = render(<CenteredSection id={id} />);
-    expect(firstChild.id).toEqual(id);
+    expect(firstChild.taskID).toEqual(id);
   });
 
   it('should not adopt an invalid attribute', () => {

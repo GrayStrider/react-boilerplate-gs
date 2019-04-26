@@ -9,24 +9,24 @@ export const scope = 'boilerplate.containers.FeaturePage';
 
 export default defineMessages({
   header: {
-    id: `${scope}.header`,
+    taskID: `${scope}.header`,
     defaultMessage: 'Features',
   },
   scaffoldingHeader: {
-    id: `${scope}.scaffolding.header`,
+    taskID: `${scope}.scaffolding.header`,
     defaultMessage: 'Quick scaffolding',
   },
   scaffoldingMessage: {
-    id: `${scope}.scaffolding.message`,
+    taskID: `${scope}.scaffolding.message`,
     defaultMessage: `Automate the creation of components, containers, routes, selectors
   and sagas - and their tests - right from the CLI!`,
   },
   feedbackHeader: {
-    id: `${scope}.feedback.header`,
+    taskID: `${scope}.feedback.header`,
     defaultMessage: 'Instant feedback',
   },
   feedbackMessage: {
-    id: `${scope}.feedback.message`,
+    taskID: `${scope}.feedback.message`,
     defaultMessage: `
       Enjoy the best DX and code your app at the speed of thought! Your
     saved changes to the CSS and JS are reflected instantaneously
@@ -35,39 +35,39 @@ export default defineMessages({
     `,
   },
   stateManagementHeader: {
-    id: `${scope}.state_management.header`,
+    taskID: `${scope}.state_management.header`,
     defaultMessage: 'Predictable state management',
   },
   stateManagementMessages: {
-    id: `${scope}.state_management.message`,
+    taskID: `${scope}.state_management.message`,
     defaultMessage: `
       Unidirectional data flow allows for change logging and time travel
     debugging.
     `,
   },
   javascriptHeader: {
-    id: `${scope}.javascript.header`,
+    taskID: `${scope}.javascript.header`,
     defaultMessage: 'Next generation JavaScript',
   },
   javascriptMessage: {
-    id: `${scope}.javascript.message`,
+    taskID: `${scope}.javascript.message`,
     defaultMessage: `Use template strings, object destructuring, arrow functions, JSX
     syntax and more, today.`,
   },
   cssHeader: {
-    id: `${scope}.css.header`,
+    taskID: `${scope}.css.header`,
     defaultMessage: 'Features',
   },
   cssMessage: {
-    id: `${scope}.css.message`,
+    taskID: `${scope}.css.message`,
     defaultMessage: 'Next generation CSS',
   },
   routingHeader: {
-    id: `${scope}.routing.header`,
+    taskID: `${scope}.routing.header`,
     defaultMessage: 'Industry-standard routing',
   },
   routingMessage: {
-    id: `${scope}.routing.message`,
+    taskID: `${scope}.routing.message`,
     defaultMessage: `
       Write composable CSS that's co-located with your components for
     complete modularity. Unique generated class names keep the
@@ -76,23 +76,23 @@ export default defineMessages({
     `,
   },
   networkHeader: {
-    id: `${scope}.network.header`,
+    taskID: `${scope}.network.header`,
     defaultMessage: 'Offline-first',
   },
   networkMessage: {
-    id: `${scope}.network.message`,
+    taskID: `${scope}.network.message`,
     defaultMessage: `
       The next frontier in performant web apps: availability without a
       network connection from the instant your users load the app.
     `,
   },
   intlHeader: {
-    id: `${scope}.internationalization.header`,
+    taskID: `${scope}.internationalization.header`,
     defaultMessage:
       'Complete i18n Standard Internationalization & Pluralization',
   },
   intlMessage: {
-    id: `${scope}.internationalization.message`,
+    taskID: `${scope}.internationalization.message`,
     defaultMessage:
       'Scalable apps need to support multiple languages, easily add and support multiple languages with `react-intl`.',
   },

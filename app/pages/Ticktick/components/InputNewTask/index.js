@@ -9,7 +9,7 @@ import { addTask } from './actions';
 
 
 function InputNewTask(props) {
-  const placeholder = `Add new task in ${props.categories[props.currentList.id].name}`;
+  const placeholder = `Add new task in ${props.selectedList.name}`;
   InputNewTask.handleClickOutside = () => toggleButtonBar(false);
 
   const [buttonBarActive, toggleButtonBar] = useState(false);
@@ -17,11 +17,13 @@ function InputNewTask(props) {
 
   const handleKeyDown = (event) => {
     if(event.key === 'Enter'){
-      props.addTask({
-        content: inputValue,
+      const params = {
+        taskContent: inputValue,
         priority: 3,
-        currentList: props.currentList
-      })
+        selectedList: props.selectedList
+      }
+
+      props.addTask(params)
       changeInputValue('')
     }
 
@@ -72,22 +74,18 @@ function InputNewTask(props) {
 }
 
 InputNewTask.propTypes = {
-  categories: PropTypes.object,
-  currentList: PropTypes.object,
+  insertableLists: PropTypes.object,
+  selectedList: PropTypes.object,
   addTask: PropTypes.func
 };
 
 const mapStateToProps = state => ({
-  currentList: state.ticktick.lists.selectedList,
-  categories: {
-    ...state.ticktick.data.groups,
-    ...state.ticktick.data.tags,
-    ...state.ticktick.data.custom
-  }
+  selectedList: state.ticktick.lists.selectedList,
+  insertableLists: state.ticktick.insertableLists
 });
 
 const mapDispatchToProps = dispatch => ({
-  addTask: (payload) => dispatch(addTask(payload))
+  addTask: (params) => dispatch(addTask(params))
 });
 
 const clickOutsideConfig = {

@@ -22,7 +22,7 @@ describe('<RepoLink />', () => {
     const id = 'test';
     const { container } = render(<RepoLink id={id} />);
     expect(container.firstChild.hasAttribute('id')).toBe(true);
-    expect(container.firstChild.id).toEqual(id);
+    expect(container.firstChild.taskID).toEqual(id);
   });
 
   it('should not adopt an invalid attribute', () => {

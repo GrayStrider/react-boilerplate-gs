@@ -37,7 +37,7 @@ function TickTick(props) {
                   size='big'
                   onClick={() => openLeftMenu(!leftMenuOpened)}
                   className='leftMenuButton'/>
-            {props.categories[props.currentList].name}
+            {props.selectedList.name}
           </span>
 
           <InputNewTask/>
@@ -54,18 +54,11 @@ function TickTick(props) {
 }
 
 TickTick.propTypes = {
-  categories: PropTypes.object,
-  currentList: PropTypes.string
+  selectedList: PropTypes.object
 }
 
 const mapStateToProps = state => ({
-  placeholder: state.ticktick.placeholder,
-  currentList: state.ticktick.lists.selectedList.id,
-  categories: {
-    ...state.ticktick.data.groups,
-    ...state.ticktick.data.tags,
-    ...state.ticktick.data.custom
-  }
+  selectedList: state.ticktick.lists.selectedList,
 });
 
 const mapDispatchToProps = dispatch => ({

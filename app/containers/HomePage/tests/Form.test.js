@@ -25,7 +25,7 @@ describe('<Form />', () => {
     const {
       container: { firstChild },
     } = render(<Form id={id} />);
-    expect(firstChild.id).toEqual(id);
+    expect(firstChild.taskID).toEqual(id);
   });
 
   it('should not adopt an invalid attribute', () => {
