@@ -5,7 +5,7 @@ import { Wrapper } from './styles';
 import Checkbox from '../Checkbox';
 
 function TaskDetails(props) {
-  const { selectedTaskID, tasks, tags } = props;
+  const { selectedTaskID, tasks, tagsIDs } = props;
 
   return (
     <Wrapper>
@@ -17,7 +17,7 @@ function TaskDetails(props) {
           </span>
           <hr/>
           Description: {tasks[selectedTaskID].description}
-          Tags: {tags}
+          Tags: {tagsIDs}
         </div>
         : 'Please, select a task from the list.'
       }
@@ -28,20 +28,21 @@ function TaskDetails(props) {
 TaskDetails.propTypes = {
   selectedTaskID: PropTypes.string,
   tasks: PropTypes.object,
-  tags: PropTypes.array
+  tagsIDs: PropTypes.array,
 };
 
 const mapStateToProps = state => ({
   tasks: state.ticktick.tasks,
   selectedTaskID: state.ticktick.tasksList.selectedTaskID,
-  tags: Object.keys(state.ticktick.insertableLists.tags)
-    .filter(
-      (tagKey) => (
-        state.ticktick.insertableLists.tags[tagKey].tasks
-        .includes(state.ticktick.tasksList.selectedTaskID)
-      )
-    ),
-  tagsByIdProp: {}
+  tagsIDs: Array.from(
+    Object.keys(state.ticktick.insertableLists.tags)
+      .filter(
+        (tagKey) => (
+          state.ticktick.insertableLists.tags[tagKey].tasks
+            .includes(state.ticktick.tasksList.selectedTaskID)
+        )
+      ), (key) => (state.ticktick.insertableLists.tags[key].name)
+  )
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -13,7 +13,7 @@ export default function([tasks, tags, groups]) {
       priority: chance.integer({ min: 0, max: 3 }),
       completed: chance.weighted([true, false], [1, 5]),
 
-    };
+    }
   }
 
   for (let i = 0; i < 10; i += 1) {
