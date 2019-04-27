@@ -15,8 +15,14 @@ function Task(props) {
     modifyTaskAction
   } = props;
 
-  // can't use taskContent in span itself, won't let modify. This way works
+  // can't use taskContent in span itself, won't let modify. This way works.
   const [spanContent] = useState(taskContent)
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      console.log('unfocus the input');
+    }
+  }
 
   const handleInput = (e) => {
     modifyTaskAction({
@@ -30,7 +36,10 @@ function Task(props) {
              taskIsSelected={taskIsSelected}>
 
       <Checkbox taskID={taskID}/>
-      <span contentEditable onInput={handleInput}>{spanContent}</span>
+      <span className='content'
+            contentEditable
+            onKeyDown={handleKeyDown}
+            onInput={handleInput}>{spanContent}</span>
     </Wrapper>
   );
 }

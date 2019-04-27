@@ -1,9 +1,19 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  background-color: ${props => props.taskIsSelected ? 'gray': 'none'};
+  padding: 0.5em;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  .content {
+    flex-grow: 1;
+    &:focus {
+      outline: none;
+    }
+  }
+  background-color: ${props => props.taskIsSelected ? '#1F1F1F' : 'none'};
 
-  margin: 1em;
+  
 `;
 
 //
