@@ -10,7 +10,7 @@ function TaskList(props) {
   const {filteredTasks} = props
   const ListWrapper = <>
     {
-      map(filteredTasks,
+      map(filteredTasks(),
         (task) => (
           <Task taskID={task.taskID} key={task.taskID}/>
           ))
@@ -19,7 +19,6 @@ function TaskList(props) {
   return (
     <Wrapper>
       <Scrollbar style={{ height: '100%' }} autoHide>
-        {JSON.stringify(filteredTasks)}
         {ListWrapper}
       </Scrollbar>
     </Wrapper>
@@ -31,12 +30,17 @@ TaskList.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  filteredTasks: pickBy(state.ticktick.tasks, (task) =>
-    state.ticktick.insertableLists
+  filteredTasks: function filteredTasks() {
+    const filtered = {}
+    forEach(state.ticktick.insertableLists
       [state.ticktick.lists.selectedList.type]
-      [state.ticktick.lists.selectedList.listID].tasks
-      .includes(task.taskID)
-  )
+      [state.ticktick.lists.selectedList.listID].tasks,
+      (taskID) => {filtered[taskID] =
+        state.ticktick.tasks[taskID]}
+      )
+    return filtered
+  }
+
 });
 
 export default connect(mapStateToProps, null)(TaskList);

@@ -1,6 +1,5 @@
 import produce from 'immer';
 import { Chance } from 'chance';
-import { sortBy } from 'lodash';
 import { SELECT_TASK, TOGGLE_DONE } from './components/Task/actions';
 import { ADD_TASK } from './components/InputNewTask/actions';
 import { SELECT_LIST, SELECT_TAB } from './components/Lists/actions';
