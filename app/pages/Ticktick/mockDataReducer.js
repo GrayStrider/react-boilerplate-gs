@@ -35,7 +35,11 @@ export const menuCategories = Object.keys(insertableLists);
 const lists = {
   predefinedGroups,
   selectedTab: menuCategories[0],
-  selectedList: custom[0]
+  selectedList: {
+    type: 'custom',
+    name: 'Today & overdue',
+    listID: 0
+  }
 };
 
 const initialState = {

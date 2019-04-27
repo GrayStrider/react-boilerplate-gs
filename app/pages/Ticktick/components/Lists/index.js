@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Icon, Menu, Grid } from 'semantic-ui-react';
+import {map} from 'lodash';
 import { Wrapper } from './styles';
 import { selectList, selectTab } from './actions';
 import { menuCategories } from '../../mockDataReducer';
@@ -31,12 +32,17 @@ function Lists(props) {
     </Menu>;
   const InsertableLists =
     <Menu vertical inverted fluid>
-      {Object.keys(insertableLists[selectedTab]).map((key) => (
+      {map(insertableLists[selectedTab], (list) => (
         <Menu.Item
-          key={key}
-          active={insertableLists[selectedTab][key] === selectedList}
-          onClick={() => selectListAction(insertableLists[selectedTab][key])}>
-          <span><Icon name='list'/>{insertableLists[selectedTab][key].name}</span>
+          key={list.listID}
+          active={list.listID === selectedList.listID}
+          onClick={() => selectListAction({
+            type: list.type,
+            name: list.name,
+            listID: list.listID,
+          })}
+        >
+          <span><Icon name='list'/>{insertableLists[selectedTab][list.listID].name}</span>
         </Menu.Item>
       ))}
     </Menu>

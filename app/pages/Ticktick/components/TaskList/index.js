@@ -1,19 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { pickBy, map } from 'lodash';
 import { Wrapper } from './styles';
 import Task from '../Task';
 import Scrollbar from '../Scrollbar';
 
 function TaskList(props) {
-  const { activeTasksIDs } = props;
-  const ListWrapper = <>{
-    activeTasksIDs
-      .map((taskID) => (
-          <Task taskID={taskID} key={taskID}/>
-        ),
-      )
-  }</>;
+  const {filteredTasks} = props
+  const ListWrapper = <>
+    {
+      map(filteredTasks,
+        (task) => (
+          <Task taskID={task.taskID} key={task.taskID}/>
+          ))
+    }
+  </>;
   return (
     <Wrapper>
       <Scrollbar style={{ height: '100%' }} autoHide>
@@ -24,11 +26,16 @@ function TaskList(props) {
 }
 
 TaskList.propTypes = {
-  activeTasksIDs: PropTypes.array,
+  filteredTasks: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({
-  activeTasksIDs: state.ticktick.lists.selectedList.tasks,
+  filteredTasks: pickBy(state.ticktick.tasks, (task) =>
+    state.ticktick.insertableLists
+      [state.ticktick.lists.selectedList.type]
+      [state.ticktick.lists.selectedList.listID].tasks
+      .includes(task.taskID)
+  )
 });
 
 export default connect(mapStateToProps, null)(TaskList);

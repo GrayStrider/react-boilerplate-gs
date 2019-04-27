@@ -20,7 +20,7 @@ function InputNewTask(props) {
       const params = {
         taskContent: inputValue,
         priority: 3,
-        selectedList: props.selectedList,
+        selectedList: props.selectedList.listID,
       };
       props.addTask(params);
       changeInputValue('');

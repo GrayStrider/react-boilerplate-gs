@@ -27,7 +27,11 @@ function TaskDetails(props) {
               <Label as='a'
                      key={tag.listID}
                      onClick ={() => {
-                       selectListAction(tag.listID)
+                       selectListAction({
+                         type: 'tags',
+                         listID: tag.listID,
+                         name: tag.name
+                       })
                        selectTabAction(tag.type)
                      }}
                      content={tag.name} />
