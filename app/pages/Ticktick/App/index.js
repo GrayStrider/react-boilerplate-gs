@@ -7,16 +7,14 @@ import Lists from '../components/Lists';
 import TaskList from '../components/TaskList';
 import InputNewTask from '../components/InputNewTask';
 import TaskDetails from '../components/TaskDetails';
+import TaskListHeader from '../components/TaskList/TaskListHeader';
 
 function TickTick(props) {
-  const {selectedList} = props
-  const [leftMenuOpened, openLeftMenu] = useState(false);
 
   return (
-    <Wrapper menuOpened={leftMenuOpened}>
+    <Wrapper>
       <Grid columns={3}>
         <Grid.Column
-          onClick={() => openLeftMenu(!leftMenuOpened)}
           className='left'>
           <Grid.Row className='account_pane'>
             <Image src='https://react.semantic-ui.com/images/wireframe/square-image.png' avatar/>
@@ -29,17 +27,8 @@ function TickTick(props) {
 
         </Grid.Column>
 
-        <Grid.Column
-          className='center'>
-
-          <span className='taskListHeader'>
-            <Icon name='bars'
-                  size='big'
-                  onClick={() => openLeftMenu(!leftMenuOpened)}
-                  className='leftMenuButton'/>
-            {selectedList.name}
-          </span>
-
+        <Grid.Column className='center'>
+          <TaskListHeader/>
           <InputNewTask/>
           <TaskList/>
         </Grid.Column>
@@ -54,11 +43,9 @@ function TickTick(props) {
 }
 
 TickTick.propTypes = {
-  selectedList: PropTypes.object
 }
 
 const mapStateToProps = state => ({
-  selectedList: state.ticktick.lists.selectedList,
 });
 
 const mapDispatchToProps = dispatch => ({

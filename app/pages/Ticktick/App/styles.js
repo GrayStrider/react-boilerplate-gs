@@ -43,20 +43,8 @@ export const Wrapper = styled.div`
     z-index: 9999;
     background: black;
   }
-  
-  .leftMenuButton {
-    display: none;
-  }
-  
-  .taskListHeader {
-  }
 
   @media screen and (max-width: 40em) {
-  
-  .leftMenuButton {
-    display: inline;
-  }
-  
     .column {
       &.left {
         position: fixed !important;
