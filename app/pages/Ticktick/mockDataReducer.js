@@ -60,17 +60,16 @@ const globalReducer = (state = initialState, action) =>
         const guid = chance.guid();
         // insert new task into database
         draft.tasks[guid] = {
+          taskID: guid,
           taskContent: action.payload.taskContent,
           description: '',
           priority: action.payload.priority,
           completed: false,
         };
-        // insert taskID into active list index
-        draft.lists.selectedList.tasks.push(guid);
-        // insert taskID into active list
-        draft.insertableLists[action.payload.selectedList.type][action.payload.selectedList.listID].tasks.push(guid)
-        // select new task after input
-        // TODO: remove tasks array from selected list
+        draft.insertableLists
+          [action.payload.selectedList.type]
+          [action.payload.selectedList.listID].tasks
+          .push(guid)
         draft.tasksList.selectedTaskID = guid;
         break;
       }

@@ -1,5 +1,5 @@
 import { Chance } from 'chance';
-const MOCK_TASKS_AMOUNT = 1000;
+const MOCK_TASKS_AMOUNT = 200;
 const chance = new Chance(Math.random);
 
 
