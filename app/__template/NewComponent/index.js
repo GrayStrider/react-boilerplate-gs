@@ -5,9 +5,9 @@ import { defaultAction } from './actions';
 import { Wrapper } from './styles';
 
 function NewComponent(props) {
+  const {defaultState} = props
   return (
     <Wrapper>
-      {props.defaultState}
     </Wrapper>
   );
 }

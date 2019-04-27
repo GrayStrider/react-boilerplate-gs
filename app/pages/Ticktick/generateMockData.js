@@ -22,7 +22,7 @@ export default function([tasks, tags, groups]) {
       listID: guid,
       name: chance.word({ length: chance.integer({ min: 3, max: 10 }) }),
       type: 'tags',
-      tasks: chance.pickset(Object.keys(tasks), chance.integer({ min: 1, max: MOCK_TASKS_AMOUNT / 20 })),
+      tasks: chance.pickset(Object.keys(tasks), chance.integer({ min: MOCK_TASKS_AMOUNT / 5, max: MOCK_TASKS_AMOUNT / 2 })),
     };
   }
 
@@ -34,7 +34,7 @@ export default function([tasks, tags, groups]) {
       listID: guid,
       name: chance.capitalize(chance.word({ length: chance.integer({ min: 3, max: 10 }) })),
       type: 'groups',
-      tasks: randomTasksToDistribute.splice(0, chance.integer({ min: 0, max: MOCK_TASKS_AMOUNT / 6 })),
+      tasks: randomTasksToDistribute.splice(0, chance.integer({ min: 20, max: MOCK_TASKS_AMOUNT / 6 })),
     };
   }
 }
