@@ -2,20 +2,29 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Dropdown, Header, Icon } from 'semantic-ui-react';
-import { defaultAction } from './actions';
+import { sortListAction } from './actions';
 import { Wrapper } from './styles';
 
 function TaskListHeader(props) {
+  const {sortList, selectedList} = props
+
   const sortDropdownTrigger =
     <Icon name='sort amount up'/>
 
   const options = [
-    { key: 'user', text: 'Account', icon: 'user' },
-    { key: 'settings', text: 'Settings', icon: 'settings' },
-    { key: 'sign-out', text: 'Sign Out', icon: 'sign out' },
+    { key: 'priority',
+      text: 'By Priority',
+      icon: 'sort amount down',
+      active: false,
+      onClick: () => {
+        sortList({
+          selectedList: selectedList,
+          sortType: 'priority'
+        })
+      }
+    },
   ]
 
-  const { selectedList } = props;
   return (
     <Wrapper>
       <Header inverted>{selectedList.name}</Header>
@@ -30,6 +39,7 @@ function TaskListHeader(props) {
 
 TaskListHeader.propTypes = {
   selectedList: PropTypes.object,
+  sortList: PropTypes.func
 };
 
 const mapStateToProps = (state, ownProps) => ({
@@ -37,7 +47,8 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  defaultAction: (index) => dispatch(defaultAction(index)),
+  sortList: ({selectedList, sortType}) =>
+    dispatch(sortListAction({selectedList, sortType})),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TaskListHeader);

@@ -1,8 +1,8 @@
-export const DEFAULT_ACTION = 'DEFAULT_ACTION';
+export const SORT_LIST = 'SORT_LIST';
 
-export function defaultAction(payload) {
+export function sortListAction(payload) {
   return {
-    type: DEFAULT_ACTION,
+    type: SORT_LIST,
     payload,
   };
 }

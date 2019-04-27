@@ -1,18 +1,21 @@
 import produce from 'immer';
 import { Chance } from 'chance';
+import { sortBy } from 'lodash';
 import { SELECT_TASK, TOGGLE_DONE } from './components/Task/actions';
 import { ADD_TASK } from './components/InputNewTask/actions';
 import { SELECT_LIST, SELECT_TAB } from './components/Lists/actions';
 import generateMockData from './generateMockData';
 import { MODIFY_TASK } from './components/actions';
+import { SORT_LIST } from './components/TaskList/TaskListHeader/actions';
+
 const chance = new Chance(Math.random);
 
-const [tasks, tags, groups] = [{}, {}, {}]
-generateMockData([tasks, tags, groups])
+const [tasks, tags, groups] = [{}, {}, {}];
+generateMockData([tasks, tags, groups]);
 
 
 const custom = {
-  0 : {
+  0: {
     listID: 0,
     name: 'Today & overdue',
     type: 'custom',
@@ -39,8 +42,8 @@ const lists = {
   selectedList: {
     type: 'custom',
     name: 'Today & overdue',
-    listID: 0
-  }
+    listID: 0,
+  },
 };
 
 const initialState = {
@@ -70,14 +73,20 @@ const globalReducer = (state = initialState, action) =>
         draft.insertableLists
           [action.payload.selectedList.type]
           [action.payload.selectedList.listID].tasks
-          .push(guid)
+          .push(guid);
         draft.tasksList.selectedTaskID = guid;
         break;
       }
+      case MODIFY_TASK:
+        draft.tasks[action.payload.taskID] = {
+          ...draft.tasks[action.payload.taskID],
+          ...action.payload.data,
+        };
+        break;
       case TOGGLE_DONE:
         draft.tasks[action.payload].completed =
           !draft.tasks[action.payload].completed;
-        break;
+        break; //TODO merge with MODIFY
 
       case SELECT_TASK:
         draft.tasksList.selectedTaskID = action.payload;
@@ -89,12 +98,44 @@ const globalReducer = (state = initialState, action) =>
         draft.lists.selectedList = action.payload;
         break;
 
-      case MODIFY_TASK:
-        draft.tasks[action.payload.taskID] = {
-          ...draft.tasks[action.payload.taskID],
-          ...action.payload.data
+      case SORT_LIST:
+        /**
+         * # Use nested switch
+         * # Sorting is kept for individual lists (sorting list's taskIDs)
+         * # Drag-n-drop task sorting within the sort types, keep when sorting
+         * # Perhaps, there's no need to worry about manual sorting order breaking
+         * after applying new sort, because since sort criteria for these sorted
+         * items would be the same, and therefore their order won't change.
+         * - payload: listID to sort
+         * - payload: sort type {
+         *   - priority
+         *   - list
+         *   - tag
+         *   - date created
+         *   - by title // TODO replace "content" with "title"
+         * }
+         *
+         **/
+        switch (action.payload.sortType) {
+          case 'priority':
+            draft.insertableLists
+              [action.payload.selectedList.type]
+              [action.payload.selectedList.listID].tasks =
+            sortBy(
+              draft.insertableLists
+                [action.payload.selectedList.type]
+                [action.payload.selectedList.listID].tasks,
+              [(a, b) => {
+                console.log(draft.tasks[a].priority);
+                console.log(draft.tasks[b].priority);
+                return a === b
+              }]
+
+            )
+
+           break;
         }
-        break
+        break;
     }
   });
 
