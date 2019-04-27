@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, createRef} from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Wrapper } from './styles';
@@ -17,10 +17,12 @@ function Task(props) {
 
   // can't use taskContent in span itself, won't let modify. This way works.
   const [spanContent] = useState(taskContent)
+  const inputRef = createRef()
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      console.log('unfocus the input');
+      e.preventDefault()
+      inputRef.current.blur();
     }
   }
 
@@ -37,7 +39,9 @@ function Task(props) {
 
       <Checkbox taskID={taskID}/>
       <span className='content'
+            ref={inputRef}
             contentEditable
+            suppressContentEditableWarning
             onKeyDown={handleKeyDown}
             onInput={handleInput}>{spanContent}</span>
     </Wrapper>
