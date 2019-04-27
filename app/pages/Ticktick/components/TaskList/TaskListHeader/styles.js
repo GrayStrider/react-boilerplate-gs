@@ -14,6 +14,7 @@ export const Wrapper = styled.span`
   .dropdown {
     height: 0; // adds some pixels
     & .menu {
+      border-radius: 0 !important;
       margin-top: 2em !important;
       & * {color: black;}
       
