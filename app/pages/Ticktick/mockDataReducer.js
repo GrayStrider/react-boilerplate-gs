@@ -121,17 +121,15 @@ const globalReducer = (state = initialState, action) =>
             draft.insertableLists
               [action.payload.selectedList.type]
               [action.payload.selectedList.listID].tasks =
-            sortBy(
               draft.insertableLists
                 [action.payload.selectedList.type]
-                [action.payload.selectedList.listID].tasks,
-              [(a, b) => {
-                console.log(draft.tasks[a].priority);
-                console.log(draft.tasks[b].priority);
-                return a === b
-              }]
-
-            )
+                [action.payload.selectedList.listID].tasks
+                .sort((a, b) => {
+                  console.log(a);
+                  console.log(b);
+                  console.log(draft.tasks[b].priority);
+                  return draft.tasks[b].priority - draft.tasks[a].priority
+                })
 
            break;
         }
