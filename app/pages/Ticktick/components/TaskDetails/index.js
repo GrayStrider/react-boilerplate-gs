@@ -1,11 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { pickBy, map } from 'lodash';
+import { Form, TextArea } from 'semantic-ui-react';
 import { Wrapper } from './styles';
 import Checkbox from '../Checkbox';
 import Tags from '../Tags';
-import { selectList, selectTab } from '../Lists/actions';
 
 function TaskDetails(props) {
   const { selectedTaskID, tasks } = props;
@@ -21,8 +20,10 @@ function TaskDetails(props) {
           </span>
           <hr/>
           Description: {tasks[selectedTaskID].description}
-          <br/>
-
+          <hr/>
+          <Form>
+            <TextArea value={tasks[selectedTaskID].description}/>
+          </Form>
           <Tags taskID={selectedTaskID}/>
         </div>
         : 'Please, select a task from the list.'

@@ -25,9 +25,6 @@ function InputNewTask(props) {
       props.addTask(params);
       changeInputValue('');
     }
-    if (event.keyCode === 51) {
-      window.alert(`#`);
-    }
   };
 
   const handleChange = (event) => {
