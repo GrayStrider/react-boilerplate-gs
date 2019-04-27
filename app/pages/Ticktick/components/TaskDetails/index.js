@@ -1,11 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { pickBy, map } from 'lodash';
+import { Label } from 'semantic-ui-react';
 import { Wrapper } from './styles';
 import Checkbox from '../Checkbox';
+import { selectList, selectTab } from '../Lists/actions';
 
 function TaskDetails(props) {
-  const { selectedTaskID, tasks, tagsIDs } = props;
+  const { selectedTaskID, tasks, taskTags, selectListAction, selectTabAction } = props;
+
 
   return (
     <Wrapper>
@@ -17,7 +21,17 @@ function TaskDetails(props) {
           </span>
           <hr/>
           Description: {tasks[selectedTaskID].description}
-          Tags: {tagsIDs}
+          <br/>
+          {map(taskTags,
+            (tag) => (
+              <Label as='a'
+                     key={tag.listID}
+                     onClick ={() => {
+                       selectListAction(tag.listID)
+                       selectTabAction(tag.type)
+                     }}
+                     content={tag.name} />
+              ))}
         </div>
         : 'Please, select a task from the list.'
       }
@@ -28,25 +42,25 @@ function TaskDetails(props) {
 TaskDetails.propTypes = {
   selectedTaskID: PropTypes.string,
   tasks: PropTypes.object,
-  tagsIDs: PropTypes.array,
+  taskTags: PropTypes.object,
+
+  selectTabAction: PropTypes.func,
+  selectListAction: PropTypes.func
 };
 
 const mapStateToProps = state => ({
   tasks: state.ticktick.tasks,
   selectedTaskID: state.ticktick.tasksList.selectedTaskID,
-  tagsIDs: Array.from(
-    Object.keys(state.ticktick.insertableLists.tags)
-      .filter(
-        (tagKey) => (
-          state.ticktick.insertableLists.tags[tagKey].tasks
-            .includes(state.ticktick.tasksList.selectedTaskID)
-        )
-      ), (key) => (state.ticktick.insertableLists.tags[key].name)
-  )
+  taskTags: pickBy(
+    state.ticktick.insertableLists.tags,
+    (tag) => tag.tasks.includes(
+      state.ticktick.tasksList.selectedTaskID
+  ))
 });
 
 const mapDispatchToProps = dispatch => ({
-  // defaultAction: (index) => dispatch(defaultAction(index)),
+  selectTabAction: (index) => dispatch(selectTab(index)),
+  selectListAction: (index) => dispatch(selectList(index)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TaskDetails);
