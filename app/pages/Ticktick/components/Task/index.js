@@ -1,4 +1,4 @@
-import React, {useState, createRef} from 'react';
+import React, { useState, createRef } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Wrapper } from './styles';
@@ -12,39 +12,36 @@ function Task(props) {
     taskContent,
     selectTaskAction,
     taskIsSelected,
-    modifyTaskAction
+    modifyTaskAction,
   } = props;
 
-  // can't use taskContent in span itself, won't let modify. This way works.
-  const [spanContent] = useState(taskContent)
-  const inputRef = createRef()
+  const inputRef = createRef();
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      e.preventDefault()
+      e.preventDefault();
       inputRef.current.blur();
     }
-  }
+  };
 
   const handleInput = (e) => {
     modifyTaskAction({
       taskID: taskID,
-      data: {taskContent: e.currentTarget.textContent}
-    })
-  }
+      data: { taskContent: e.target.value },
+    });
+  };
 
   return (
     <Wrapper onClick={() => selectTaskAction(taskID)}
              taskIsSelected={taskIsSelected}>
 
       <Checkbox taskID={taskID}/>
-      <span className='content'
-            ref={inputRef}
-            contentEditable
-            spellCheck={false}
-            suppressContentEditableWarning
-            onKeyDown={handleKeyDown}
-            onInput={handleInput}>{spanContent}</span>
+      <input ref={inputRef}
+             spellCheck={false}
+             value={taskContent}
+             onInput={handleInput}
+             onKeyDown={handleKeyDown}
+      />
     </Wrapper>
   );
 }
@@ -64,7 +61,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = dispatch => ({
   selectTaskAction: (taskID) => dispatch(selectTask(taskID)),
-  modifyTaskAction: ({taskID, data}) => dispatch(modifyTask({taskID, data}))
+  modifyTaskAction: ({ taskID, data }) => dispatch(modifyTask({ taskID, data })),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Task);

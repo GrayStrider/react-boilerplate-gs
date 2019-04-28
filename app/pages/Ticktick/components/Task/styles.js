@@ -5,7 +5,9 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  .content {
+  input {
+    background: none;
+    border: none;
     flex-grow: 1;
     &:focus {
       outline: none;
