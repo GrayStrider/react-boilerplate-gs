@@ -20,4 +20,12 @@ export const Wrapper = styled.div`
     margin-left: -1em;
     border-radius: 50%;
   }
+  .dropdown {
+    height: 0; // adds some pixels
+    & .menu {
+      border-radius: 0 !important;
+      margin-top: 2.5em !important;
+      & * {color: black;}
+    }
+  }
 `;

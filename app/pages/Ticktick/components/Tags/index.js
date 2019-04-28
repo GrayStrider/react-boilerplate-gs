@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { map, pickBy } from 'lodash';
-import { Icon, Label } from 'semantic-ui-react';
+import { Dropdown, Icon, Label } from 'semantic-ui-react';
 import { Wrapper } from './styles';
 import { selectList, selectTab } from '../Lists/actions';
 import { deleteTaskFromList } from '../actions';
@@ -38,6 +38,11 @@ function Tags(props) {
               color='black'/>
           </React.Fragment>
         ))}
+        <Dropdown
+          icon={null}
+          options={[{key: 'test', text: 'test'}]}
+          trigger={<Label as='a' content='+ tag'/>}>
+        </Dropdown>
     </Wrapper>
   );
 }
