@@ -1,5 +1,5 @@
 import { Chance } from 'chance';
-const MOCK_TASKS_AMOUNT = 2000;
+const MOCK_TASKS_AMOUNT = 500;
 const chance = new Chance(Math.random);
 
 
@@ -26,7 +26,7 @@ export default function([tasks, tags, groups]) {
       listID: guid,
       name: chance.word({ length: chance.integer({ min: 3, max: 10 }) }),
       type: 'tags',
-      tasks: chance.pickset(Object.keys(tasks), chance.integer({ min: MOCK_TASKS_AMOUNT / 5, max: MOCK_TASKS_AMOUNT / 2 })),
+      tasks: chance.pickset(Object.keys(tasks), chance.integer({ min: MOCK_TASKS_AMOUNT / 15, max: MOCK_TASKS_AMOUNT / 10 })),
     };
   }
 

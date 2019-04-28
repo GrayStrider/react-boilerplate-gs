@@ -1,10 +1,11 @@
 import produce from 'immer';
 import { Chance } from 'chance';
+import { without } from 'lodash';
 import { SELECT_TASK, TOGGLE_DONE } from './components/Task/actions';
 import { ADD_TASK } from './components/InputNewTask/actions';
 import { SELECT_LIST, SELECT_TAB } from './components/Lists/actions';
 import generateMockData from './generateMockData';
-import { MODIFY_TASK } from './components/actions';
+import { DELETE_TASK_FROM_LIST, MODIFY_TASK } from './components/actions';
 import { SORT_LIST } from './components/TaskList/TaskListHeader/actions';
 
 const chance = new Chance(Math.random);
@@ -143,6 +144,14 @@ const globalReducer = (state = initialState, action) =>
             break;
         }
         break;
+      case DELETE_TASK_FROM_LIST:
+        draft.insertableLists
+          [action.payload.type]
+          [action.payload.listID].tasks =
+
+          without(draft.insertableLists
+            [action.payload.type]
+            [action.payload.listID].tasks, action.payload.taskID)
     }
   });
 
