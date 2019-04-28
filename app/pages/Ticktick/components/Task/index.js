@@ -24,7 +24,7 @@ function Task(props) {
     }
   };
 
-  const handleInput = (e) => {
+  const handleChange = (e) => {
     modifyTaskAction({
       taskID: taskID,
       data: { taskContent: e.target.value },
@@ -39,7 +39,7 @@ function Task(props) {
       <input ref={inputRef}
              spellCheck={false}
              value={taskContent}
-             onInput={handleInput}
+             onChange={handleChange}
              onKeyDown={handleKeyDown}
       />
     </Wrapper>

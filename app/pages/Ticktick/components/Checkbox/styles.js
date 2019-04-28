@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.span`
+    display: flex;
+    align-items: center;
     .checkbox {
-    vertical-align: sub;
     margin-right: 0.8em;
     
     & *:before {
