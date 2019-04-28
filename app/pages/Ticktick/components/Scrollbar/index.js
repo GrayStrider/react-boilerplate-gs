@@ -3,6 +3,9 @@ import { Scrollbars } from 'react-custom-scrollbars';
 
 // TODO Don't hide track while mouse inside the container
 // https://github.com/malte-wessel/react-custom-scrollbars/blob/master/src/Scrollbars/index.js
+//TODO render only x amount of tasks dynamically based on scroll height/position
+
+// https://github.com/malte-wessel/react-custom-scrollbars/blob/master/docs/API.md
 
 export default class Scrollbar extends Component {
 

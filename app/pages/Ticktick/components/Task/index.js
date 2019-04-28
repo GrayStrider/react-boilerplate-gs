@@ -41,6 +41,7 @@ function Task(props) {
       <span className='content'
             ref={inputRef}
             contentEditable
+            spellCheck={false}
             suppressContentEditableWarning
             onKeyDown={handleKeyDown}
             onInput={handleInput}>{spanContent}</span>
