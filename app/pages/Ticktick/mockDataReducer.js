@@ -54,13 +54,13 @@ const initialState = {
   },
 };
 
-
 /* eslint-disable default-case, no-param-reassign */
 const globalReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case ADD_TASK: {
         const date = new Date()
+        const time = date.getTime()
         const guid = chance.guid();
         // insert new task into database
         draft.tasks[guid] = {
@@ -69,7 +69,8 @@ const globalReducer = (state = initialState, action) =>
           description: '',
           priority: action.payload.priority,
           completed: false,
-          timeCreated: date.getTime()
+          timeCreated: time,
+          timeLastModified: time
         };
         draft.insertableLists
           [action.payload.selectedList.type]
@@ -78,12 +79,16 @@ const globalReducer = (state = initialState, action) =>
         draft.tasksList.selectedTaskID = guid;
         break;
       }
-      case MODIFY_TASK:
+      case MODIFY_TASK: {
+        const date = new Date()
         draft.tasks[action.payload.taskID] = {
           ...draft.tasks[action.payload.taskID],
           ...action.payload.data,
+          timeLastModified: date.getTime()
         };
         break;
+      }
+
       case TOGGLE_DONE:
         draft.tasks[action.payload].completed =
           !draft.tasks[action.payload].completed;

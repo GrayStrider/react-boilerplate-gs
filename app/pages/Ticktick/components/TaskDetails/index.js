@@ -26,6 +26,8 @@ function TaskDetails(props) {
           <Tags taskID={selectedTaskID}/>
           <hr/>
           {tasks[selectedTaskID].timeCreated}
+          <hr/>
+          {tasks[selectedTaskID].timeLastModified}
         </div>
         : 'Please, select a task from the list.'
       }
