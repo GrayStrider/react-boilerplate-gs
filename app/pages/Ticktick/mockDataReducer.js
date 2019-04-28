@@ -60,6 +60,7 @@ const globalReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case ADD_TASK: {
+        const date = new Date()
         const guid = chance.guid();
         // insert new task into database
         draft.tasks[guid] = {
@@ -68,6 +69,7 @@ const globalReducer = (state = initialState, action) =>
           description: '',
           priority: action.payload.priority,
           completed: false,
+          timeCreated: date.getTime()
         };
         draft.insertableLists
           [action.payload.selectedList.type]

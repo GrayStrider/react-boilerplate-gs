@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { pickBy, map, forEach } from 'lodash';
+import { map, forEach } from 'lodash';
 import { Wrapper } from './styles';
 import Task from '../Task';
 import Scrollbar from '../Scrollbar';
@@ -26,7 +26,7 @@ function TaskList(props) {
 }
 
 TaskList.propTypes = {
-  filteredTasks: PropTypes.object,
+  filteredTasks: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({

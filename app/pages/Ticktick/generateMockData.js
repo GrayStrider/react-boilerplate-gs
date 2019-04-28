@@ -6,12 +6,14 @@ const chance = new Chance(Math.random);
 export default function([tasks, tags, groups]) {
   for (let i = 0; i < MOCK_TASKS_AMOUNT; i += 1) {
     const guid = chance.guid()
+    const date = new Date()
     tasks[guid] = {
       taskID: guid,
       taskContent: chance.sentence({ words: chance.integer({ min: 2, max: 6 }) }),
       description: chance.sentence({ words: 10 }),
       priority: chance.integer({ min: 0, max: 3 }),
       completed: chance.weighted([true, false], [1, 5]),
+      timeCreated: date.getTime()
 
     }
   }

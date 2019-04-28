@@ -9,7 +9,6 @@ import Tags from '../Tags';
 function TaskDetails(props) {
   const { selectedTaskID, tasks } = props;
 
-
   return (
     <Wrapper>
       {selectedTaskID ?
@@ -25,6 +24,8 @@ function TaskDetails(props) {
             <TextArea value={tasks[selectedTaskID].description}/>
           </Form>
           <Tags taskID={selectedTaskID}/>
+          <hr/>
+          {tasks[selectedTaskID].timeCreated}
         </div>
         : 'Please, select a task from the list.'
       }
