@@ -5,7 +5,7 @@ import { Wrapper } from './styles';
 import { selectTask } from './actions';
 import Checkbox from '../Checkbox';
 import { modifyTask } from '../actions';
-import Tags from '../Tags';
+import Tags from './Tags';
 
 function Task(props) {
   const {

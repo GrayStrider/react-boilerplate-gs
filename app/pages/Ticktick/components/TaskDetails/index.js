@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import { Form, TextArea } from 'semantic-ui-react';
 import { Wrapper } from './styles';
 import Checkbox from '../Checkbox';
-import Tags from '../Tags';
-
+import Tags from './Tags'
 function TaskDetails(props) {
   const { selectedTaskID, tasks } = props;
 
