@@ -5,6 +5,7 @@ import { Wrapper } from './styles';
 import { selectTask } from './actions';
 import Checkbox from '../Checkbox';
 import { modifyTask } from '../actions';
+import Tags from '../Tags';
 
 function Task(props) {
   const {
@@ -42,6 +43,7 @@ function Task(props) {
              onChange={handleChange}
              onKeyDown={handleKeyDown}
       />
+      <Tags taskID={taskID}/>
     </Wrapper>
   );
 }

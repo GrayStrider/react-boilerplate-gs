@@ -26,7 +26,7 @@ export default function([tasks, tags, groups]) {
       listID: guid,
       name: chance.word({ length: chance.integer({ min: 3, max: 10 }) }),
       type: 'tags',
-      tasks: chance.pickset(Object.keys(tasks), chance.integer({ min: MOCK_TASKS_AMOUNT / 15, max: MOCK_TASKS_AMOUNT / 10 })),
+      tasks: chance.pickset(Object.keys(tasks), chance.integer({ min: MOCK_TASKS_AMOUNT / 10, max: MOCK_TASKS_AMOUNT / 5 })),
     };
   }
 
