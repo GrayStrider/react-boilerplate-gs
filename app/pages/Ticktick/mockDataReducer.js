@@ -125,14 +125,17 @@ const globalReducer = (state = initialState, action) =>
               draft.insertableLists
                 [action.payload.selectedList.type]
                 [action.payload.selectedList.listID].tasks
-                .sort((a, b) => {
-                  console.log(a);
-                  console.log(b);
-                  console.log(draft.tasks[b].priority);
-                  return draft.tasks[b].priority - draft.tasks[a].priority
-                })
-
+                .sort((a, b) => draft.tasks[b].priority - draft.tasks[a].priority)
            break;
+          case 'timeAdded':
+            draft.insertableLists
+              [action.payload.selectedList.type]
+              [action.payload.selectedList.listID].tasks =
+              draft.insertableLists
+                [action.payload.selectedList.type]
+                [action.payload.selectedList.listID].tasks
+                .sort((a, b) => draft.tasks[b].timeCreated - draft.tasks[a].timeCreated)
+            break;
         }
         break;
     }

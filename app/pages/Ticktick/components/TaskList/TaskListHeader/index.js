@@ -23,6 +23,17 @@ function TaskListHeader(props) {
         })
       }
     },
+    { key: 'timeAdded',
+      text: 'By Time Added',
+      icon: 'sort amount down',
+      active: false,
+      onClick: () => {
+        sortList({
+          selectedList: selectedList,
+          sortType: 'timeAdded'
+        })
+      }
+    }
   ]
 
   return (
