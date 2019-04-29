@@ -153,8 +153,6 @@ const globalReducer = (state = initialState, action) =>
             [action.payload.type]
             [action.payload.listID].tasks, action.payload.taskID)
         break
-      case ADD_TASK_TO_LIST:
-        break
     }
   });
 
