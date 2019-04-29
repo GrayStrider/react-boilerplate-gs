@@ -5,9 +5,10 @@ import { map, pickBy, keys, difference } from 'lodash';
 import { Dropdown } from 'semantic-ui-react';
 import { Wrapper } from './styles';
 import { addTaskToList, deleteTaskFromList } from '../../actions';
+import { selectList, selectTab } from '../../Lists/actions';
 
 function Tags(props) {
-  const { tags, taskID, deleteTaskFromListAction, addTaskToListAction } = props;
+  const { tags, taskID, deleteTaskFromListAction, addTaskToListAction, selectListAction, selectTabAction } = props;
 
   const allTags = map(
     tags, (tag) => (
@@ -33,7 +34,7 @@ function Tags(props) {
         taskID: taskID,
         type: 'tags',
         listID: difference(value, taskTags),
-      }
+      },
       )
 
       : deleteTaskFromListAction(
@@ -43,6 +44,18 @@ function Tags(props) {
         listID: difference(taskTags, value),
       },
       );
+  const renderLabel = label => ({
+    color: 'blue',
+    content: `#${label.text}`,
+    onClick: () => {
+      selectTabAction('tags');
+      selectListAction({
+        type: 'tags',
+        name: label.text,
+        listID: label.value
+      });
+    },
+  });
 
   return (
     <Wrapper>
@@ -56,8 +69,8 @@ function Tags(props) {
         selection
         value={taskTags}
         onChange={handleChange}
+        renderLabel={renderLabel}
       />
-      {taskTags}
     </Wrapper>
   );
 }
@@ -66,6 +79,8 @@ Tags.propTypes = {
   tags: PropTypes.object,
   deleteTaskFromListAction: PropTypes.func,
   addTaskToListAction: PropTypes.func,
+  selectListAction: PropTypes.func,
+  selectTabAction: PropTypes.func,
   taskID: PropTypes.string,
 };
 
@@ -81,6 +96,8 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = dispatch => ({
   deleteTaskFromListAction: (payload) => dispatch(deleteTaskFromList(payload)),
   addTaskToListAction: (payload) => dispatch(addTaskToList(payload)),
+  selectListAction: (payload) => dispatch(selectList(payload)),
+  selectTabAction: (payload) => dispatch(selectTab(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tags);
