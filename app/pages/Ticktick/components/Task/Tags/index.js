@@ -10,7 +10,7 @@ function Tags(props) {
   return (
     <Wrapper>
       {
-        map(pick(taskTags, keys(taskTags).slice(0, 2)),
+        map(pick(taskTags, keys(taskTags).slice(0, 3)),
         (tag) => (<React.Fragment key={tag.listID}>
             <Label size='mini'>
               {truncate(tag.name, {length: 8})}
@@ -20,7 +20,7 @@ function Tags(props) {
       }
       {keys(taskTags).length > 3 ?
         <Label size='mini'>
-          {`+${keys(taskTags).length - 2}`}
+          {`+${keys(taskTags).length - 3}`}
         </Label> : null
       }
     </Wrapper>

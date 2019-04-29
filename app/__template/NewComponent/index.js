@@ -21,7 +21,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  defaultAction: (index) => dispatch(defaultAction(index)),
+  defaultActionAction: (payload) => dispatch(defaultAction(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewComponent);

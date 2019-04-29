@@ -1,22 +1,48 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import faker from 'faker'
-import {map} from 'lodash'
-import { Dropdown } from 'semantic-ui-react'
+import { map, pickBy, keys, difference } from 'lodash';
+import { Dropdown } from 'semantic-ui-react';
 import { Wrapper } from './styles';
-import { defaultAction } from './actions';
+import { addTaskToList, deleteTaskFromList } from '../../actions';
 
 function Tags(props) {
-  const {defaultState} = props
+  const { tags, taskID, deleteTaskFromListAction, addTaskToListAction } = props;
 
-  const addressDefinitions = faker.definitions.address
+  const allTags = map(
+    tags, (tag) => (
+      {
+        key: tag.listID,
+        text: tag.name,
+        value: tag.listID,
+      }
+    ));
 
-  const stateOptions = map(addressDefinitions.state, (state, index) => ({
-    key: addressDefinitions.state_abbr[index],
-    text: state,
-    value: addressDefinitions.state_abbr[index],
-  }))
+  const taskTags = keys(
+    pickBy(
+      tags, (tag) =>
+        tag.tasks.includes(
+          taskID,
+        )));
+
+  const handleChange = (e, { value }) =>
+    value.length > taskTags.length
+
+      ? addTaskToListAction(
+      {
+        taskID: taskID,
+        type: 'tags',
+        listID: difference(taskTags, value),
+      },
+      )
+
+      : deleteTaskFromListAction(
+      {
+        taskID: taskID,
+        type: 'tags',
+        listID: value,
+      },
+      );
 
   return (
     <Wrapper>
@@ -24,27 +50,37 @@ function Tags(props) {
       <Dropdown
         fluid
         multiple
-        onChange
-        options={stateOptions}
-        placeholder='Add tags'
+        options={allTags}
+        placeholder='Add tags..'
         search
         selection
+        value={taskTags}
+        onChange={handleChange}
       />
-
+      {taskTags}
     </Wrapper>
   );
 }
 
 Tags.propTypes = {
-  defaultState: PropTypes.object,
-}
+  tags: PropTypes.object,
+  deleteTaskFromListAction: PropTypes.func,
+  addTaskToListAction: PropTypes.func,
+  taskID: PropTypes.string,
+};
 
 const mapStateToProps = (state, ownProps) => ({
-  defaultState: state.default.defaultStateEntry
+  taskTags: pickBy(
+    state.ticktick.insertableLists.tags,
+    (tag) => tag.tasks.includes(
+      ownProps.taskID,
+    )),
+  tags: state.ticktick.insertableLists.tags,
 });
 
 const mapDispatchToProps = dispatch => ({
-  defaultAction: (index) => dispatch(defaultAction(index)),
+  deleteTaskFromListAction: (payload) => dispatch(deleteTaskFromList(payload)),
+  addTaskToListAction: (payload) => dispatch(addTaskToList(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tags);
