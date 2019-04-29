@@ -153,6 +153,12 @@ const globalReducer = (state = initialState, action) =>
             [action.payload.type]
             [action.payload.listID].tasks, action.payload.taskID)
         break
+      case ADD_TASK_TO_LIST:
+        draft.insertableLists
+          [action.payload.type]
+          [action.payload.listID].tasks
+          .push(action.payload.taskID)
+        break
     }
   });
 

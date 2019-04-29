@@ -26,11 +26,21 @@ function Tags(props) {
         )));
 
   const handleChange = (e, { value }) =>
-    deleteTaskFromListAction(
+    taskTags.length < value.length
+
+      ? addTaskToListAction(
       {
         taskID: taskID,
         type: 'tags',
-        listID: difference(taskTags, value)
+        listID: difference(value, taskTags),
+      }
+      )
+
+      : deleteTaskFromListAction(
+      {
+        taskID: taskID,
+        type: 'tags',
+        listID: difference(taskTags, value),
       },
       );
 
