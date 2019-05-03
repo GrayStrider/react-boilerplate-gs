@@ -13,8 +13,10 @@
   "author": "Max Stoiber",
   "license": "MIT",
   "scripts": {
+    "now-build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
     "start:dev": "cross-env NODE_ENV=development node server",
     "start": "cross-env NODE_ENV=production node server",
+    "now-start": "cross-env NODE_ENV=production node server",
     "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
     "build:clean": "rimraf ./build && rimraf ./app/build",
     "analyze:clean": "rimraf stats.json",

@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "name": "TickTick GS",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/node",
+      "config": { "distDir": "build" }
+    }
+  ],
+  "alias": ["strider.dev", "ticktick"]
+}
